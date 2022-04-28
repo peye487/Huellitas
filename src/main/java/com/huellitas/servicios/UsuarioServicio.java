@@ -2,6 +2,7 @@
 package com.huellitas.servicios;
 
 import com.huellitas.entidades.Usuario;
+import com.huellitas.entidades.Zona;
 import com.huellitas.repositorios.UsuarioRepositorio;
 import java.util.Date;
 import java.util.Optional;
@@ -14,8 +15,11 @@ public class UsuarioServicio {
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
     
+    @Autowired
+    private ZonaServicio zonaServicio;
+    
     @Transactional(rollbackFor = Exception.class)
-    public Usuario crear(String nombre, String apellido, Integer edad, String email, String pass)throws Exception{
+    public Usuario crear(String nombre, String apellido, Integer edad, String email, String pass, String idZona)throws Exception{
         validar(nombre, apellido, edad, email);
         Usuario usuario = new Usuario();
         usuario.setNombre(nombre);
@@ -23,6 +27,9 @@ public class UsuarioServicio {
         usuario.setEdad(edad);
         usuario.setEmail(email);
         usuario.setFechaAlta(new Date());
+        
+        Zona zona = zonaServicio.buscarPorId(idZona);
+        usuario.setZona(zona);
         //String passEncriptado = new BC
         
         return usuarioRepositorio.save(usuario);
