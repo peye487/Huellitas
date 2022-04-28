@@ -2,6 +2,7 @@
 package com.huellitas.servicios;
 
 import com.huellitas.entidades.Mascota;
+import com.huellitas.entidades.Zona;
 import com.huellitas.repositorios.MascotaRepositorio;
 import java.util.Date;
 import java.util.Optional;
@@ -13,16 +14,22 @@ import org.springframework.transaction.annotation.Transactional;
 public class MascotaServicio {
      @Autowired
     private MascotaRepositorio mascotaRepositorio;
-    
+     
+     @Autowired
+     private ZonaServicio zonaServicio;
+       
     @Transactional(rollbackFor = Exception.class)
-    public Mascota crear(String sexo, String tipo, Integer edad, String raza, String observaciones)throws Exception{
+    public Mascota crear(String sexo, String tipo, Integer edad, String raza, String observaciones, String idZona)throws Exception{
         validar(sexo, tipo, edad, raza, observaciones);
         Mascota mascota = new Mascota();
         mascota.setEdad(edad);
         mascota.setObservaciones(observaciones);
-        mascota.setRaza(raza);
+        mascota.setRaza(raza);        
         mascota.setSexo(sexo);
-        mascota.setTipo(tipo);
+        mascota.setTipo(tipo);        
+        Zona zona = zonaServicio.buscarPorId(idZona);
+        mascota.setZona(zona);
+        
         //String passEncriptado = new BC
         
         return mascotaRepositorio.save(mascota);
