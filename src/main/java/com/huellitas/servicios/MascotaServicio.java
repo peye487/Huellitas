@@ -18,6 +18,21 @@ public class MascotaServicio {
      @Autowired
      private ZonaServicio zonaServicio;
        
+     public Mascota buscarPorId(String id) throws Exception{
+         Optional<Mascota>respuesta = mascotaRepositorio.findById(id);
+         if (respuesta.isPresent()) {
+             Mascota mascota = respuesta.get();
+             return mascota;
+         }else{
+             throw new Exception("No se encontro la mascota solicitada");
+         }
+         
+     }
+     
+     
+     
+     
+     
     @Transactional(rollbackFor = Exception.class)
     public Mascota crear(String sexo, String tipo, Integer edad, String raza, String observaciones, String idZona)throws Exception{
         validar(sexo, tipo, edad, raza, observaciones);
@@ -97,5 +112,7 @@ public class MascotaServicio {
             throw new Exception("La edad no puede ser nula o menor a cero");
         }
     }
+    
+    
     
 }

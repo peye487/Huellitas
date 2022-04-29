@@ -18,6 +18,18 @@ public class UsuarioServicio {
     @Autowired
     private ZonaServicio zonaServicio;
     
+    public Usuario buscarPorId(String id) throws Exception{
+         Optional<Usuario>respuesta = usuarioRepositorio.findById(id);
+         if (respuesta.isPresent()) {
+             Usuario usuario = respuesta.get();
+             return usuario;
+         }else{
+             throw new Exception("No se encontro el usuario solicitado");
+         }
+     }
+    
+    
+    
     @Transactional(rollbackFor = Exception.class)
     public Usuario crear(String nombre, String apellido, Integer edad, String email, String pass, String idZona)throws Exception{
         validar(nombre, apellido, edad, email);
