@@ -1,8 +1,11 @@
 
 package com.huellitas.entidades;
 
+import com.huellitas.enums.EstadoMascota;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -34,7 +37,11 @@ public class Mascota{
     
     @ManyToOne
     private Usuario usuario;
-
+    
+    @ManyToOne
+    @Enumerated(EnumType.STRING)
+    private EstadoMascota estadoMascota;
+    
     public Zona getZona() {
         return zona;
     }
@@ -124,9 +131,21 @@ public class Mascota{
         this.usuario = usuario;
     }
 
+    
+
+    public EstadoMascota getEstadoMascota() {
+        return estadoMascota;
+    }
+
+    public void setEstadoMascota(EstadoMascota estadoMascota) {
+        this.estadoMascota = estadoMascota;
+    }
+
     @Override
     public String toString() {
-        return "Mascota{" + "id=" + id + ", sexo=" + sexo + ", tipo=" + tipo + ", raza=" + raza + ", edad=" + edad + ", observaciones=" + observaciones + ", fechaAlta=" + fechaAlta + ", fechaBaja=" + fechaBaja + ", fechaModificacion=" + fechaModificacion + ", zona=" + zona + ", usuario=" + usuario + '}';
+        return "Mascota{" + "id=" + id + ", sexo=" + sexo + ", tipo=" + tipo + ", raza=" + raza + ", edad=" + edad + ", observaciones=" + observaciones + ", fechaAlta=" + fechaAlta + ", fechaBaja=" + fechaBaja + ", fechaModificacion=" + fechaModificacion + ", zona=" + zona + ", usuario=" + usuario + ", estadoMascota=" + estadoMascota + '}';
     }
+
+
   
 }
