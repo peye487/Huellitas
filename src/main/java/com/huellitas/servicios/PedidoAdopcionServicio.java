@@ -26,10 +26,10 @@ public class PedidoAdopcionServicio {
         PedidoAdopcion  pedAdopcion = new PedidoAdopcion();
         pedAdopcion.setFechaPedido(new Date());
         pedAdopcion.setObservacion(observacion);
-        Usuario usuario = usuarioServicio.buscarPorId(idUsuario);
-        Mascota mascota = mascotaServicio.buscarPorId(idMascota);
-        pedAdopcion.setMascota(mascota);
-        pedAdopcion.setUsuario(usuario);        
+//        Usuario usuario = usuarioServicio.buscarPorId(idUsuario);
+//        Mascota mascota = mascotaServicio.buscarPorId(idMascota);
+//        pedAdopcion.setMascota(mascota);
+//        pedAdopcion.setUsuario(usuario);        
         return pedAdopRepositorio.save(pedAdopcion);
     }
     

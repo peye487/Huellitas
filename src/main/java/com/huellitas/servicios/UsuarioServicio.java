@@ -6,6 +6,8 @@ import com.huellitas.entidades.Zona;
 import com.huellitas.repositorios.UsuarioRepositorio;
 import java.util.Date;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class UsuarioServicio {
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
-    
+        
     @Autowired
     private ZonaServicio zonaServicio;
     
@@ -39,7 +41,6 @@ public class UsuarioServicio {
         usuario.setEdad(edad);
         usuario.setEmail(email);
         usuario.setFechaAlta(new Date());
-        
         Zona zona = zonaServicio.buscarPorId(idZona);
         usuario.setZona(zona);
         //String passEncriptado = new BC
@@ -70,6 +71,9 @@ public class UsuarioServicio {
             usuario.setEdad(edad);
             usuario.setEmail(email);
             usuario.setFechaModificacion(new Date());
+            /*↓↓↓↓↓↓↓*/
+            /*falta un modificar zona*/
+            
             usuarioRepositorio.save(usuario);
         }else{
             throw new Exception("No se encontro usuario");
@@ -88,6 +92,8 @@ public class UsuarioServicio {
             throw new Exception("No se encontro usuario");
         }
     }
+    
+    
     
     private void validar(String nombre, String apellido, Integer edad, String email) throws Exception{
         if(nombre==null || nombre.isEmpty()){
