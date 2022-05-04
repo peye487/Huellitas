@@ -4,6 +4,7 @@ package com.huellitas.servicios;
 import com.huellitas.entidades.Zona;
 import com.huellitas.repositorios.ZonaRepositorio;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -68,6 +69,16 @@ public class ZonaServicio {
         }else{
             throw new Exception("No se encontro la zona solicitada");
         }
+    }
+    
+    @Transactional(readOnly = true)
+    public List<Zona> listarTodo()throws Exception{
+       
+        List<Zona> zonas = zonaRepositorio.findAll();
+        if(zonas.isEmpty()){
+            throw new Exception("No existen zonas en la base de datos");
+        }
+        return zonas;
     }
     
     private void validar(String ciudad, String provincia) throws Exception{
