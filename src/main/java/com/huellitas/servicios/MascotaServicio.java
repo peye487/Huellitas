@@ -1,7 +1,9 @@
 package com.huellitas.servicios;
 
+import com.huellitas.entidades.ContactoMascota;
 import com.huellitas.entidades.Mascota;
 import com.huellitas.entidades.Zona;
+import com.huellitas.enums.EstadoMascota;
 import com.huellitas.repositorios.MascotaRepositorio;
 import java.util.Date;
 import java.util.List;
@@ -16,7 +18,9 @@ public class MascotaServicio {
     private UsuarioServicio usuarioServicio;
     @Autowired
     private MascotaRepositorio mascotaRepositorio;
-
+    @Autowired
+    private ContactoMascotaServicio contactoMascotaServicio;
+    
     @Autowired
     private ZonaServicio zonaServicio;
 
@@ -28,11 +32,10 @@ public class MascotaServicio {
         } else {
             throw new Exception("No se encontro la mascota solicitada");
         }
-
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public Mascota crear(String sexo, String tipo, Integer edad, String raza, String observaciones, String idZona) throws Exception {
+    public Mascota crear(String sexo, String tipo, Integer edad, String raza, String observaciones, String idZona, String idContacto) throws Exception {
         validar(sexo, tipo, edad, raza, observaciones);
         Mascota mascota = new Mascota();
         mascota.setEdad(edad);
@@ -40,8 +43,12 @@ public class MascotaServicio {
         mascota.setRaza(raza);
         mascota.setSexo(sexo);
         mascota.setTipo(tipo);
+        
         Zona zona = zonaServicio.buscarPorId(idZona);
         mascota.setZona(zona);
+        ContactoMascota contacto = contactoMascotaServicio.buscarPorId(idContacto);
+        mascota.setContacto(contacto);
+        mascota.setEstadoMascota(EstadoMascota.DISPONIBLE);
 
         //String passEncriptado = new BC
         return mascotaRepositorio.save(mascota);
@@ -50,6 +57,7 @@ public class MascotaServicio {
     @Transactional(rollbackFor = Exception.class)
     public void eliminarMascota(String id) throws Exception {
         Mascota mascota = buscarPorId(id);
+        
         mascota.setFechaBaja(new Date());
         mascotaRepositorio.save(mascota);
     }
@@ -59,6 +67,7 @@ public class MascotaServicio {
         validar(sexo, tipo, edad, raza, observaciones);
 
         Mascota mascota = buscarPorId(id);/*se llama directamente el metodo buscar id para no volver a usar el optional etc*/
+        
         mascota.setEdad(edad);
         mascota.setObservaciones(observaciones);
         mascota.setRaza(raza);
@@ -69,32 +78,30 @@ public class MascotaServicio {
 
     @Transactional(rollbackFor = Exception.class)
     public void habilitarMascota(String id) throws Exception {
-        Optional<Mascota> respuesta = mascotaRepositorio.findById(id);/* Mascota mascota = buscarPorId(id); */
-        if (respuesta.isPresent()) {
-            Mascota mascota = respuesta.get();
-            mascota.setFechaAlta(new Date());
-            mascota.setFechaBaja(null);
-            mascotaRepositorio.save(mascota);
-        } else {
-            throw new Exception("No se encontro usuario");
-        }
+        
+        Mascota mascota = buscarPorId(id);
+        
+        mascota.setFechaAlta(new Date());
+        mascota.setFechaBaja(null);
+        mascotaRepositorio.save(mascota);
+      
     }
+    
     @Transactional(readOnly = true)
-   public List<Mascota> listar(){
+    public List<Mascota> listar(){
        return mascotaRepositorio.findAll();
-   }
+    }
+   
    @Transactional(rollbackFor = Exception.class)
-    public void adoptarMascota(String id){ /* este metodo generaria la adopcion de la mascota */
-        try {
-            usuarioServicio.buscarPorId(id);/* ver tema seguridad */
-            if (true) {
-                
-            }
-            
-            
-        } catch (Exception ex) {
-           
-        }
+    public void adoptarMascota(String id) throws Exception{ /* este metodo generaria la adopcion de la mascota */
+
+        Mascota mascota = buscarPorId(id);
+        
+        mascota.setFechaBaja(new Date());
+        mascota.setEstadoMascota(EstadoMascota.ADOPTADO);
+        
+        mascotaRepositorio.save(mascota);
+        
     }
 
 
