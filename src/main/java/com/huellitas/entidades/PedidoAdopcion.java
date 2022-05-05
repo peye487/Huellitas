@@ -1,14 +1,11 @@
 
 package com.huellitas.entidades;
 
-import com.huellitas.enums.EstadoPedidoAdopcion;
 import java.util.Date;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
@@ -22,15 +19,13 @@ public class PedidoAdopcion {
     private String observacion;
     
     @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaPedido;
+    private Date fechaAdopcion;
     
-    @ManyToOne
+    @OneToOne
     private Usuario usuario;
-    @ManyToOne
+    @OneToOne
     private Mascota mascota;
-    @ManyToOne
-    @Enumerated(EnumType.STRING)
-    private EstadoPedidoAdopcion estadoPedido;
+
   /*getter and setter */  
     public String getId() {
         return id;
@@ -48,12 +43,12 @@ public class PedidoAdopcion {
         this.observacion = observacion;
     }
 
-    public Date getFechaPedido() {
-        return fechaPedido;
+    public Date getFechaAdopcion() {
+        return fechaAdopcion;
     }
 
-    public void setFechaPedido(Date fechaPedido) {
-        this.fechaPedido = fechaPedido;
+    public void setFechaAdopcion(Date fechaAdopcion) {
+        this.fechaAdopcion = fechaAdopcion;
     }
 
     public Usuario getUsuario() {
@@ -72,13 +67,6 @@ public class PedidoAdopcion {
         this.mascota = mascota;
     }
 
-    public EstadoPedidoAdopcion getEstadoPedido() {
-        return estadoPedido;
-    }
-
-    public void setEstadoPedido(EstadoPedidoAdopcion estadoPedido) {
-        this.estadoPedido = estadoPedido;
-    }
     
     
 }
