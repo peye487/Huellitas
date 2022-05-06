@@ -15,8 +15,10 @@ public class PedidoAdopcionServicio {
    
     @Autowired
     private PedidoAdopcionRepositorio pedAdopRepositorio;
+    
     @Autowired
     private MascotaServicio mascotaServicio;
+    
     @Autowired
     private UsuarioServicio usuarioServicio;
     

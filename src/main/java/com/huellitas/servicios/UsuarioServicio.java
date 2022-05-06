@@ -23,10 +23,10 @@ public class UsuarioServicio {
              throw new Exception("No se encontro el usuario solicitado");
          }
      }
-   
     
     @Transactional(rollbackFor = Exception.class)
-    public Usuario crear(String nombre, String apellido, Integer edad, String email, String pass, String idZona)throws Exception{
+    public Usuario crear(String nombre, String apellido, Integer edad, 
+            String email, String pass)throws Exception{
         validar(nombre, apellido, edad, email);
         Usuario usuario = new Usuario();
         usuario.setNombre(nombre);
@@ -46,12 +46,11 @@ public class UsuarioServicio {
         
         usuario.setFechaBaja(new Date());
         usuarioRepositorio.save(usuario);
-
     }
     
     @Transactional(rollbackFor = Exception.class)
-    public void modificarUsuario(String id, String nombre, String apellido,Integer edad,
-            String email) throws Exception {
+    public void modificarUsuario(String id, String nombre, String apellido,
+            Integer edad,String email) throws Exception {
         validar(nombre, apellido, edad, email);
 
         Usuario usuario = buscarPorId(id);

@@ -16,9 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ZonaControlador {
     @Autowired
     private ZonaServicio zonaServicio;
-    //
+    
     @PostMapping("/")
-    public String crearUsuario(ModelMap modelo, @RequestParam String ciudad, @RequestParam String provincia) throws Exception {
+    public String crearUsuario(ModelMap modelo, @RequestParam String ciudad, 
+            @RequestParam String provincia) throws Exception {
         try {
             zonaServicio.crear(ciudad, provincia);
         } catch (Exception e) {
@@ -30,7 +31,6 @@ public class ZonaControlador {
     @PostMapping("/{id}")
     public String editarUsuario(@PathVariable String id, ModelMap modelo) throws Exception {
         try {
-
             Zona zona = zonaServicio.buscarPorId(id);
             modelo.put("zona", zona);
         } catch (Exception e) {

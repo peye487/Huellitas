@@ -19,10 +19,6 @@ public class UsuarioControlador {
 
     @Autowired
     private UsuarioServicio usuarioServicio;
-    
-    @Autowired
-    private ZonaServicio zonaServicio;
-    
 
     @GetMapping("/")
     public String usuario() {
@@ -31,39 +27,36 @@ public class UsuarioControlador {
 
     @PostMapping("/")
     public String crearUsuario(ModelMap modelo, @RequestParam String nombre, @RequestParam String apellido,
-            @RequestParam Integer edad, @RequestParam String email, @RequestParam String password, @RequestParam String zona) throws Exception {
+            @RequestParam Integer edad, @RequestParam String email, @RequestParam String password) throws Exception {
         try {
-            usuarioServicio.crear(nombre, apellido, edad, email, password, zona);
+            usuarioServicio.crear(nombre, apellido, edad, email, password);
         } catch (Exception e) {
-            modelo.put("Error", e.getMessage());
+            modelo.put("error", e.getMessage());
         }
         return "index.html";
     }
 
     @GetMapping("/")
     public String editarUsuario(@RequestParam String id, ModelMap model){
-        try {
-            model.addAttribute("zona", zonaServicio.listarTodo());
-            
+        try { 
             Usuario usuario = usuarioServicio.buscarPorId(id);
-            
             model.addAttribute("usuario", usuario);
             
         } catch (Exception e) {
+            model.put("error", e.getMessage());
         }      
-        
         return "editarUsuario.html"; /*ver nombre del html*/
     }
 
     @PostMapping("/{id}")
-    public String editarUsuario(@PathVariable String id, @RequestParam String nombre, @RequestParam String apellido,
-            @RequestParam Integer edad, @RequestParam String email, @RequestParam String password, 
-            @RequestParam String idZona, ModelMap modelo) throws Exception {
+    public String editarUsuario(@PathVariable String id, @RequestParam String nombre, 
+            @RequestParam String apellido,@RequestParam Integer edad, @RequestParam String email, 
+            @RequestParam String password, ModelMap modelo) throws Exception {
         try {
-            usuarioServicio.modificarUsuario(id, nombre, apellido, edad, email, idZona);
+            usuarioServicio.modificarUsuario(id, nombre, apellido, edad, email);
             
         } catch (Exception e) {
-            modelo.put("Error", e.getMessage());
+            modelo.put("error", e.getMessage());
         }
         return "index.html";
     }
