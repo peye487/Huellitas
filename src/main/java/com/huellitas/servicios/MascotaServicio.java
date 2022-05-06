@@ -101,7 +101,12 @@ public class MascotaServicio {
         mascota.setEstadoMascota(EstadoMascota.ADOPTADO);
         
         mascotaRepositorio.save(mascota);
-        
+    }
+    
+    @Transactional(readOnly = true)
+    public List<Mascota>listaMascotasDisponibles(){
+        List<Mascota> mascotasDisponibles = mascotaRepositorio.listarMascotasDisponibles();
+        return mascotasDisponibles;
     }
 
 

@@ -17,43 +17,57 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/Mascota")
 public class MascotaControlador {
 
     @Autowired
     private MascotaServicio mascotaServicio;
 
-    @GetMapping("/")
+    @GetMapping("/cargar")
     public String mascota() {
         return "index.html";
     }
 
-    @PostMapping("/")
+    @PostMapping("/cargar")
     public String cargarMascota(ModelMap modelo, @RequestParam String sexo, @RequestParam String tipo,
-            @RequestParam Integer edad, @RequestParam String raza, @RequestParam String observaciones) throws Exception {
+            @RequestParam Integer edad, @RequestParam String raza, @RequestParam String observaciones,
+            @RequestParam String idZona, @RequestParam String idContacto) throws Exception {
         try {
-            mascotaServicio.crear(sexo, tipo, edad, raza, observaciones, raza);
+            mascotaServicio.crear(sexo, tipo, edad, raza, observaciones, idZona, idContacto);
         } catch (Exception e) {
-            modelo.put("Error", e.getMessage());
+            modelo.put("error", e.getMessage());
         }
         return "index.html";
     }
-    @PostMapping("/")
+    
+    @GetMapping("/editar")
+    public String editarMascota(@RequestParam String id, ModelMap modelo) {
+        try {
+            modelo.addAttribute("mascota", mascotaServicio.buscarPorId(id));      
+        } catch (Exception e) {
+            modelo.put("error", e.getMessage());
+        }
+        return "index.html";
+    }
+    
+    @PostMapping("/editar")
     public String editarMascota(ModelMap modelo, @RequestParam String sexo, @RequestParam String tipo,
             @RequestParam Integer edad, @RequestParam String raza, @RequestParam String observaciones) throws Exception {
         try {
             mascotaServicio.modificarMascota(tipo, sexo, tipo, edad, raza, observaciones);
         } catch (Exception e) {
-            modelo.put("Error", e.getMessage());
+            modelo.put("error", e.getMessage());
         }
         return "index.html";
     }
+    
     @GetMapping("/")
     public String mostrarMascota(ModelMap modelo){
-        List <Mascota> mascotas= mascotaServicio.listar();
-        modelo.put("Mascotas",mascotas);
+        List <Mascota> mascotas= mascotaServicio.listaMascotasDisponibles();
+        modelo.put("mascotas",mascotas);
         return "index.html";
     }
+    
     
     
     
