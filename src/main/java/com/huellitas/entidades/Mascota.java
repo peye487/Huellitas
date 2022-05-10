@@ -1,11 +1,15 @@
 
 package com.huellitas.entidades;
 
+import com.huellitas.enums.EstadoMascota;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
@@ -32,9 +36,20 @@ public class Mascota{
     @ManyToOne
     private Zona zona;
     
-    @ManyToOne
-    private Usuario usuario;
+    @Enumerated(EnumType.STRING)
+    private EstadoMascota estadoMascota;
+    
+    @OneToOne
+    private ContactoMascota contacto;
 
+    public ContactoMascota getContacto() {
+        return contacto;
+    }
+
+    public void setContacto(ContactoMascota contacto) {
+        this.contacto = contacto;
+    }
+    
     public Zona getZona() {
         return zona;
     }
@@ -115,18 +130,19 @@ public class Mascota{
         this.fechaModificacion = fechaModificacion;
     }
 
- 
-    public Usuario getUsuario() {
-        return usuario;
+    public EstadoMascota getEstadoMascota() {
+        return estadoMascota;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setEstadoMascota(EstadoMascota estadoMascota) {
+        this.estadoMascota = estadoMascota;
     }
 
     @Override
     public String toString() {
-        return "Mascota{" + "id=" + id + ", sexo=" + sexo + ", tipo=" + tipo + ", raza=" + raza + ", edad=" + edad + ", observaciones=" + observaciones + ", fechaAlta=" + fechaAlta + ", fechaBaja=" + fechaBaja + ", fechaModificacion=" + fechaModificacion + ", zona=" + zona + ", usuario=" + usuario + '}';
+        return "Mascota{" + "id=" + id + ", sexo=" + sexo + ", tipo=" + tipo + ", raza=" + raza + ", edad=" + edad + ", observaciones=" + observaciones + ", fechaAlta=" + fechaAlta + ", fechaBaja=" + fechaBaja + ", fechaModificacion=" + fechaModificacion + ", zona=" + zona + ", estadoMascota=" + estadoMascota + ", contacto=" + contacto + '}';
     }
+
+    
   
 }
