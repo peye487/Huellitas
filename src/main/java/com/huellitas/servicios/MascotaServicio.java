@@ -15,8 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class MascotaServicio {
     @Autowired
-    private UsuarioServicio usuarioServicio;
-    @Autowired
     private MascotaRepositorio mascotaRepositorio;
     @Autowired
     private ContactoMascotaServicio contactoMascotaServicio;

@@ -36,7 +36,6 @@ public class Mascota{
     @ManyToOne
     private Zona zona;
     
-    @ManyToOne
     @Enumerated(EnumType.STRING)
     private EstadoMascota estadoMascota;
     
