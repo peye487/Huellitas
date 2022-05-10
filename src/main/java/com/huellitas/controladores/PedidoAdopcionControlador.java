@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/pedido-adopcion")
 public class PedidoAdopcionControlador {
     @Autowired
     private PedidoAdopcionServicio pAdopcionServicio;

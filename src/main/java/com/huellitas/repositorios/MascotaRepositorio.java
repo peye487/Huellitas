@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MascotaRepositorio extends JpaRepository<Mascota,String> {
     
-    @Query("SELECT m FROM Mascota m WHERE m.estadoMascota LIKE: 'disponible'")
+    @Query("SELECT m FROM Mascota m WHERE m.estadoMascota LIKE 'disponible'")
     public List<Mascota>listarMascotasDisponibles();
 
     

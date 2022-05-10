@@ -3,7 +3,6 @@ package com.huellitas.controladores;
 
 import com.huellitas.entidades.Usuario;
 import com.huellitas.servicios.UsuarioServicio;
-import com.huellitas.servicios.ZonaServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/usuario")
 public class UsuarioControlador {
 
     @Autowired
@@ -36,8 +35,8 @@ public class UsuarioControlador {
         return "index.html";
     }
 
-    @GetMapping("/")
-    public String editarUsuario(@RequestParam String id, ModelMap model){
+    @GetMapping("/{id}")
+    public String editarUsuario(@PathVariable String id, ModelMap model){
         try { 
             Usuario usuario = usuarioServicio.buscarPorId(id);
             model.addAttribute("usuario", usuario);
