@@ -19,7 +19,7 @@ public class ContactoMascotaControlador {
     
    @GetMapping("/cargar")
     public String contactoMascota() {
-        return "index.html"; /*retorna formulario de datos de la mascota*/
+        return "darAdopcion.html"; /*retorna formulario de datos de la mascota*/
     }
    
     @PostMapping("/cargar")

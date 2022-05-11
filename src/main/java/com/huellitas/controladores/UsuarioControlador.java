@@ -19,9 +19,9 @@ public class UsuarioControlador {
     @Autowired
     private UsuarioServicio usuarioServicio;
 
-    @GetMapping("/")
+    @GetMapping("/registro")
     public String usuario() {
-        return "index.html";
+        return "registro.html";
     }
 
     @PostMapping("/")
