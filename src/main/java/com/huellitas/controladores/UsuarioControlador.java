@@ -24,7 +24,7 @@ public class UsuarioControlador {
         return "registro.html";
     }
 
-    @PostMapping("/")
+    @PostMapping("/registro")
     public String crearUsuario(ModelMap modelo, @RequestParam String nombre, @RequestParam String apellido,
             @RequestParam Integer edad, @RequestParam String email, @RequestParam String password) throws Exception {
         try {

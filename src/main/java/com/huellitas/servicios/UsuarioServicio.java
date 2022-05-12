@@ -6,6 +6,7 @@ import com.huellitas.repositorios.UsuarioRepositorio;
 import java.util.Date;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,7 +35,8 @@ public class UsuarioServicio {
         usuario.setEdad(edad);
         usuario.setEmail(email);
         usuario.setFechaAlta(new Date());
-        //String passEncriptado = new BC
+        String passEncriptado = new BCryptPasswordEncoder().encode(pass);
+        usuario.setPass(passEncriptado);
         
         return usuarioRepositorio.save(usuario);
     }
