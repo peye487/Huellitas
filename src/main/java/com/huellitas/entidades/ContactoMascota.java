@@ -8,12 +8,14 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class ContactoMascota {
+    
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
+    
     private String nombrePersona;
-    private Integer telefono;
+    private Long telefono;
     private String email;
 
     public String getId() {
@@ -32,11 +34,11 @@ public class ContactoMascota {
         this.nombrePersona = nombrePersona;
     }
 
-    public Integer getTelefono() {
+    public Long getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(Integer telefono) {
+    public void setTelefono(Long telefono) {
         this.telefono = telefono;
     }
 

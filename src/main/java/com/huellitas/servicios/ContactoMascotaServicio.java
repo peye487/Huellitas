@@ -26,19 +26,19 @@ public class ContactoMascotaServicio {
     }
     
     @Transactional(rollbackFor = Exception.class)
-    public ContactoMascota crearContacto(String nombre, String email, Integer telefono) throws Exception{
+    public ContactoMascota crearContacto(String nombre, String email, Long telefono) throws Exception{
         validar(nombre, email, telefono);
         
         ContactoMascota contacto = new ContactoMascota();
         
-        contacto.setEmail(email);
+        contacto.setEmail(email);       
         contacto.setNombrePersona(nombre);
-        contacto.setTelefono(telefono);
-        
-        return contacto;
+        contacto.setTelefono(telefono);      
+               
+        return contactoMascotaRepositorio.save(contacto);        
     }
     
-    private void validar (String nombre, String email, Integer telefono) throws Exception{
+    private void validar (String nombre, String email, Long telefono) throws Exception{
         if (nombre == null || nombre.isEmpty()) {
             throw new Exception("El nombre no puede ser nulo");
         }
