@@ -24,12 +24,12 @@ public class ContactoMascotaControlador {
    
     @PostMapping("/cargar")
     public String cargarContactoMascota(ModelMap modelo, @RequestParam String nombre, @RequestParam String email,
-            @RequestParam Integer telefono) throws Exception {
+            @RequestParam Long telefono) throws Exception {
         try {
             contactoMascotaServicio.crearContacto(nombre, email, telefono);
-        } catch (Exception e) {
+            } catch (Exception e) {
             modelo.put("error", e.getMessage());
         }
-        return "index.html";
+        return "redirect:/mascota/cargar";
     }
 }

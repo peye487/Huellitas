@@ -25,7 +25,7 @@ public class MascotaControlador {
 
     @GetMapping("/cargar")
     public String mascota() {
-        return "index.html";
+        return "darAdopcionMascota.html";
     }
 
     @PostMapping("/cargar")

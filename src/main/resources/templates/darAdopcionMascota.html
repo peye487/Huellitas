@@ -4,27 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar - Huellitas</title>
-    <link rel="stylesheet" href="assets/css/styleRegistro.css">
+    <link rel="stylesheet" href="../assets/css/styleRegistro.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <form action="" method="POST" id="form">
+    <form th:action="@{/mascota/cargar}" method="POST" id="form">
         <div class="form">
             <h1>Datos Mascota</h1>
             <div class="grupo">
-                <input type="text" name="" id="name" required><span class="barra"></span>
+                <input type="text" name="sexo" id="name" required><span class="barra"></span>
                 <label for="">Sexo</label>
             </div>
             <div class="grupo">
-                <input type="number" name="" id="email" required min="1" max="20"><span class="barra"></span>
+                <input type="number" name="edad" id="email" required min="1" max="20"><span class="barra"></span>
                 <label for="">Edad</label>
             </div>
             <div class="grupo">
-                <input type="text" name="" id="name" required ><span class="barra"></span>
+                <input type="text" name="raza" id="name" required ><span class="barra"></span>
                 <label for="">Raza</label>
             </div>
             <div class="grupo"> 
-                <input type="text" name="" id="name" required><span class="barra"></span>
+                <input type="text" name="tipo" id="name" required><span class="barra"></span>
                 <label for="">Tipo de animal</label>
             </div>
             <div class="grupo"> 
@@ -42,7 +42,7 @@
             </div>
             <div class="grupo">
                 <label for="">Observaciones</label>
-                <textarea name="name" id="" cols="30" rows="10" placeholder="ingresar observacion"></textarea>
+                <textarea name="observaciones" id="" cols="30" rows="10" placeholder="ingresar observacion"></textarea>
             </div>           
             
             <button type="submit">Aceptar</button>
