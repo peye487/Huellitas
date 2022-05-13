@@ -1,6 +1,7 @@
 
 package com.huellitas.controladores;
 
+import com.huellitas.entidades.ContactoMascota;
 import com.huellitas.servicios.ContactoMascotaServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,8 @@ public class ContactoMascotaControlador {
     public String cargarContactoMascota(ModelMap modelo, @RequestParam String nombre, @RequestParam String email,
             @RequestParam Long telefono) throws Exception {
         try {
-            contactoMascotaServicio.crearContacto(nombre, email, telefono);
+            ContactoMascota contacto=  contactoMascotaServicio.crearContacto(nombre, email, telefono);
+            modelo.addAttribute("contacto", contacto);
             } catch (Exception e) {
             modelo.put("error", e.getMessage());
         }

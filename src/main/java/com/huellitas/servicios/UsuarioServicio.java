@@ -6,12 +6,18 @@ import com.huellitas.repositorios.UsuarioRepositorio;
 import java.util.Date;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class UsuarioServicio {
+public class UsuarioServicio implements UserDetailsService
+
+ {
+    
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
     
@@ -93,6 +99,11 @@ public class UsuarioServicio {
         if(edad==null || edad<18){
             throw new Exception("La edad no puede ser nula y/o menor a 18 años");
         }  
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
  
 }

@@ -5,7 +5,9 @@
  */
 package com.huellitas.controladores;
 
+import com.huellitas.entidades.ContactoMascota;
 import com.huellitas.entidades.Mascota;
+import com.huellitas.servicios.ContactoMascotaServicio;
 import com.huellitas.servicios.MascotaServicio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +25,17 @@ public class MascotaControlador {
     @Autowired
     private MascotaServicio mascotaServicio;
 
+     @Autowired
+     private ContactoMascotaServicio contactoMascotaServicio; 
+     
     @GetMapping("/cargar")
-    public String mascota() {
+    public String mascota(@RequestParam String id,  ModelMap modelo) {
+        
+        try{
+        ContactoMascota contacto= contactoMascotaServicio.buscarPorId(id);
+        modelo.addAttribute("contacto", contacto);
+         } catch (Exception e) {
+            modelo.put("error", e.getMessage());}
         return "darAdopcionMascota.html";
     }
 

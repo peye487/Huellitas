@@ -28,11 +28,13 @@ public class UsuarioControlador {
     public String crearUsuario(ModelMap modelo, @RequestParam String nombre, @RequestParam String apellido,
             @RequestParam Integer edad, @RequestParam String email, @RequestParam String password) throws Exception {
         try {
+            System.out.println(nombre+apellido+edad+email+password);
+                 
             usuarioServicio.crear(nombre, apellido, edad, email, password);
         } catch (Exception e) {
             modelo.put("error", e.getMessage());
         }
-        return "index.html";
+        return "redirect:/";
     }
 
     @GetMapping("/{id}")
