@@ -8,33 +8,33 @@
     <link  href="../assets/css/styleRegistro.css" rel="stylesheet">
 </head>
 <body>
-    <form action="" method="POST" id="form">
+    <form th:action="@{/usuario/registro}" method="POST" id="form">
         <div class="form">
             <h1>Registro</h1>
             <div class="grupo">
-                <input type="text" name="nombre" id="name" required><span class="barra"></span>
+                <input type="text" name="nombre" required><span class="barra"></span>
                 <label for="">Nombre</label>
             </div>
             <div class="grupo">
-                <input type="text" name="apellido" id="name" required><span class="barra"></span>
+                <input type="text" name="apellido" required><span class="barra"></span>
                 <label for="">Apellido</label>
             </div>
             <div class="grupo">
-                <input type="email" name="email" id="email" required><span class="barra"></span>
+                <input type="email" name="email"  required><span class="barra"></span>
                 <label for="">Email</label>
             </div>
             <div class="grupo">
-                <input type="number" name="edad" id="email" required><span class="barra"></span>
+                <input type="number" name="edad" required><span class="barra"></span>
                 <label for="">Edad</label>
             </div>
             <div class="grupo">
-                <input type="password" name="pass" id="password" required><span class="barra"></span>
+                <input type="password" name="password" required><span class="barra"></span>
                 <label for="">Contraseña</label>
             </div>
-            <div class="grupo">
-                <input type="password" name="passConfir" id="password" required><span class="barra"></span>
+<!--            <div class="grupo">
+                <input type="password" name="passConfirm" id="password" required><span class="barra"></span>
                 <label for="">Confirmar contraseña</label>
-            </div>
+            </div>-->
 
             <button type="submit">Suscribirte</button>
         </div>
