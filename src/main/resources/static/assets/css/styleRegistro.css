@@ -2,7 +2,6 @@
     --colorTextos: #fffcfcd2;
 }
 
-
 *,
 ::before,
 ::after {
@@ -13,6 +12,10 @@
 
 body {
     font-family: 'Roboto';
+    height: 100vh;
+}
+
+.usuario {
     background-color: #252525;
     /* background: #4568DC; */
     /* fallback for old browsers */
@@ -26,31 +29,50 @@ body {
     align-items: center;
 }
 
-h1{
+.container {
+    display: flex;
+    height: 90%;
+}
+
+.container-login {
+    background-color: #252525;
+    height: 100%;
+}
+h1 {
     text-align: center;
     font-weight: 700;
 }
 
-form{
+form {
     background: #919191;
-    padding: 40px 0;
-    /* box-shadow: 0 0 6px 0 rgba(255, 255, 255, 0.8); */
+    padding: 15px 0;
+    box-shadow: 0 0 6px 0 rgba(255, 255, 255, 0.8);
     border-radius: 5px;
 }
 
-.form{
-    width: 100%;
+#form {
+    margin: 0 auto;
+    /* width: 80vw; */
+    /* margin-top: 1rem; */
+}
+
+#form1 {
+    margin: 0 auto;
+    width: 80vw;
+    /* margin-top: 1rem; */
+}
+.form,form1,form2 {
+    width: 90%;
     margin: auto;
 }
-
-form .grupo{
+form .grupo {
     position: relative;
-    margin: 45px ;
+    margin: 40px;
 }
 
-input{
+input {
     background: none;
-    color: #c6c6c6;
+    color: #f9f9f9;
     font-size: 18px;
     padding: 10px 10px 10px 5px;
     display: block;
@@ -59,35 +81,40 @@ input{
     border-bottom: 1px solid var(--colorTextos);
 }
 
-input:focus{ 
+input:focus {
     outline: none;
-    color: #5e5d5d;
+    color: #cecece;
 }
 
-label{
+label {
     color: var(--colorTextos);
-    font-size: 16px;
+    font-size: 18px;
     position: absolute;
     left: 5px;
     top: 10px;
     transition: 0.5s ease all;
     pointer-events: none;
 }
-
-input:focus~label,
-input:valid~label{
-    top: -14px;
-    font-size: 12px;
-    color: #ffffff;
+.stiloh3 {
+    color: var(--colorTextos);
+    font-size: 18px;
+    font-weight: lighter    ;
 }
 
-.barra{
+input:focus~label,
+input:valid~label {
+    top: -14px;
+    font-size: 12px;
+    color: #2dc997;
+}
+
+.barra {
     position: relative;
     display: block;
     width: 100%;
 }
 
-.barra::before{
+.barra::before {
     content: "";
     height: 2px;
     width: 0%;
@@ -98,20 +125,25 @@ input:valid~label{
     left: 0;
 }
 
-input:focus~.barra::before{
+input:focus~.barra::before {
     width: 100%;
 }
 
+.select{
+    width: 440px;
+    height: 30px;
+    background-color: #dff6ef;
+    font-size: 18px;
+}
 
-button{
+select:focus{
+    background-color: #c3efe2;
+}
+
+
+button {
     font-family: 'roboto';
     background: #2dc997;
-    /* background: #4568DC; */
-    /* fallback for old browsers */
-    /* background: -webkit-linear-gradient(to right, #B06AB3, #4568DC); */
-    /* Chrome 10-25, Safari 5.1-6 */
-    /* background: linear-gradient(to right, #B06AB3, #4568DC); */
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     border: none;
     display: block;
     width: 80%;
@@ -120,12 +152,15 @@ button{
     height: 40px;
     font-size: 16px;
     cursor: pointer;
-    border-radius: 0.25rem 0 0 0.25rem 
+    border-radius: 0.25rem 0 0 0.25rem
+}
+button:hover{
+    background-color: #0e8660;
 }
 
-@media screen and (max-width:500px){
-    form{
+
+@media screen and (max-width:500px) {
+    form {
         width: 80%;
     }
 }
-

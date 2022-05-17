@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,7 +23,7 @@
                 <input type="text" name="telefono" required><span class="barra"></span>
                 <label for="">Telefono</label>
             </div>
-            <button type="submit" th:href="@{/mascota/cargar(id=__${contacto.id}__)}">Continuar</button>
+            <button type="submit">Continuar</button>
         </div>
     </form>
     <script src="main.js"></script>
