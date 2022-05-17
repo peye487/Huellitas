@@ -9,11 +9,13 @@ import com.huellitas.entidades.ContactoMascota;
 import com.huellitas.entidades.Mascota;
 import com.huellitas.servicios.ContactoMascotaServicio;
 import com.huellitas.servicios.MascotaServicio;
+import com.huellitas.servicios.ZonaServicio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,18 +26,23 @@ public class MascotaControlador {
 
     @Autowired
     private MascotaServicio mascotaServicio;
+    
+    @Autowired
+    private ZonaServicio zonaServicio;
 
-     @Autowired
-     private ContactoMascotaServicio contactoMascotaServicio; 
-     
-    @GetMapping("/cargar")
-    public String mascota(@RequestParam String id,  ModelMap modelo) {
-        
+    @Autowired
+    private ContactoMascotaServicio contactoMascotaServicio;
+
+    @GetMapping("/cargar/{id}")
+    public String mascota(@PathVariable String id, ModelMap modelo){
         try{
-        ContactoMascota contacto= contactoMascotaServicio.buscarPorId(id);
-        modelo.addAttribute("contacto", contacto);
-         } catch (Exception e) {
-            modelo.put("error", e.getMessage());}
+            modelo.put("idContacto", id);
+            modelo.addAttribute("zonas", zonaServicio.listarTodo());
+        } catch (Exception e){
+            modelo.put("error", e.getMessage());
+            return "darAdopcionMascota.html";
+        }
+        
         return "darAdopcionMascota.html";
     }
 
@@ -50,17 +57,17 @@ public class MascotaControlador {
         }
         return "index.html";
     }
-    
+
     @GetMapping("/editar")
     public String editarMascota(@RequestParam String id, ModelMap modelo) {
         try {
-            modelo.addAttribute("mascota", mascotaServicio.buscarPorId(id));      
+            modelo.addAttribute("mascota", mascotaServicio.buscarPorId(id));
         } catch (Exception e) {
             modelo.put("error", e.getMessage());
         }
         return "index.html";
     }
-    
+
     @PostMapping("/editar")
     public String editarMascota(ModelMap modelo, @RequestParam String sexo, @RequestParam String tipo,
             @RequestParam Integer edad, @RequestParam String raza, @RequestParam String observaciones) throws Exception {
@@ -71,19 +78,15 @@ public class MascotaControlador {
         }
         return "index.html";
     }
-    
+
     @GetMapping("/")
-    public String mostrarMascota(ModelMap modelo){
-        List <Mascota> mascotas= mascotaServicio.listaMascotasDisponibles();
-        modelo.put("mascotas",mascotas);
+    public String mostrarMascota(ModelMap modelo) {
+        List<Mascota> mascotas = mascotaServicio.listaMascotasDisponibles();
+        modelo.put("mascotas", mascotas);
         return "index.html";
     }
-    
-    
-    
-    
+
     /* ↓↓↓↓ VER ↓↓↓↓*/
-    
 //    @PostMapping("/")
 //    public String bajaMascota(ModelMap modelo, @RequestParam String sexo, @RequestParam String tipo,
 //            @RequestParam Integer edad, @RequestParam String raza, @RequestParam String observaciones) throws Exception {
