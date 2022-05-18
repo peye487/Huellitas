@@ -1,83 +1,95 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Registrar - Huellitas</title>
-        <link rel="stylesheet" href="../assets/css/styleRegistro.css">
-        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"> 
-    </head>
-    <body>
-        <form th:action="@{/mascota/cargar}" method="POST" id="form">
-            <div class="form">
-                <h1>Datos Mascota</h1>
-                <div class="grupo">
-                    <input type="text" name="sexo" id="name" required><span class="barra"></span>
-                    <label for="">Sexo</label>
-                </div>
+<html lang="es">
 
-                <div class="grupo">
-                    <input type="number" name="edad" id="email" required min="1" max="20"><span class="barra"></span>
-                    <label for="">Edad</label>
-                </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar - Huellitas</title>
+    <link rel="stylesheet" href="../assets/css/styleRegistro.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+</head>
 
-                <div class="grupo">
-                    <input type="text" name="raza" id="name" required ><span class="barra"></span>
-                    <label for="">Raza</label>
-                </div>
-                
-                <div class="grupo"> 
-                    <input type="text" name="tipo" id="name" required><span class="barra"></span>
-                    <label for="">Tipo de animal</label>
-                </div>
+<body>
+    <div class="container-login">
+        <form th:action="@{/mascota/cargar}" method="POST" id="form1" enctype="multipart/form-data">
+            <h1>Datos de la Mascota</h1>
+            <div class="container">
+                <div class="form1">
 
-                <div class="grupo"> 
-                    <label for="">provincia</label>
-                    <select name="" id="">Seleccione provincia
-                        <option 
-                        th:each = "z: ${zonas}"
-                        th:text = "${z.provincia}"
-                        th:value = ${z.provincia}>
-                        </option>
-                    </select>
-                    
+                    <div class="grupo">
+                        <h3 class="stiloh3">Sexo</h3>
+                        <label for=""></label>
+                        <select name="sexo" id="sexo" class="select">
+                            <option value="macho">Macho</option>
+                            <option value="hembra">Hembra</option>
+                        </select>
+                        <!-- <label for="">Sexo</label> -->
+                    </div>
+                    <div class="grupo">
+                        <h3 class="stiloh3">Edad</h3>
+                        <input type="number" name="edad" id="email" required min="1" max="20"><span
+                            class="barra"></span>
+                        <label for="edad"></label>
+                    </div>
+                    <div class="grupo">
+                        <input type="text" name="raza" id="name" required><span class="barra"></span>
+                        <label for="">Raza</label>
+                    </div>
+                    <div class="grupo">
+                        <h3 class="stiloh3">Tipo</h3>
+                        <label for=""></label>
+                        <select name="tipo" id="name" title="tipo" class="select">
+                            <option value="perro">Perro</option>
+                            <option value="gato">Gato</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                        <!-- <input type="text" name="tipo" id="name" required><span class="barra"></span> -->
+                    </div>
+                    <div class="grupo">
+                        <h3 class="stiloh3">Seleccione provincia</h3>
+                        <select name="provincia" id="provincia" class="select">
+                            <option
+                                th:each = "z: ${zonas}"                        
+                                th:text = "${z.provincia}"
+                                th:value = "${z.provincia}">  
+                            </option>
+                        </select>
+                        <!-- <input type="text" name="provincia" id="name" required><span class="barra"></span> -->
+                        <label for=""></label>
+                    </div>
+                    <div class="grupo">
+                        <h3 class="stiloh3">Seleccione ciudad</h3>
+                        <select name="idZona" id="ciudad" class="select">
+                            <option
+                                th:each = "z: ${zonas}"                        
+                                th:text = "${z.ciudad}"
+                                th:value = "${z.id}">
+                            </option>
+                        </select>
+                        <!-- <input type="text" name="ciudad" id="name" required><span class="barra"></span> -->
+                        <label for=""></label>
+                    </div>
                 </div>
-
-                <div class="grupo"> 
-                    <label for="">ciudad</label>
-                    <select name="" id="">Seleccione ciudad
-                        <option   
-                        th:each = "z: ${zonas}"
-                        th:text = "${z.ciudad}"
-                        th:value = "${z.ciudad}">
-                        </option>
-                    </select>      
+                <div class="form2">
+                    <div class="grupo">
+                        <h3 class="stiloh3">Subir foto</h3>
+                        <input type="file" name="archivo" id="name" required><span class="barra"></span>
+                        <label for=""></label>
+                    </div>
+                    <div class="grupo">
+                        <label for=""></label>
+                        <textarea name="observaciones" id="" cols="80" rows="20"
+                            placeholder="ingresar observacion"></textarea>
+                    </div>
                 </div>
-
-                <div class="grupo">
-                    <input type="file" name="" id="name" required><span class="barra"></span>
-                    <label for="">Subir foto</label>
-                </div>
-
-                <div class="grupo">
-                    <label for="">Observaciones</label>
-                    <textarea name="observaciones" id="" cols="30" rows="10" placeholder="ingresar observacion"></textarea>
-                </div>           
-                <input type="hidden" name="idContacto" th:value="${idContacto}"/>
-
-                <button type="submit">Aceptar</button>
             </div>
+
+            <input type="hidden" name="idContacto" th:value="${idContacto}"/> 
+
+            <button type="submit">Aceptar</button>
         </form>
-<!--        <script>
+    </div>
+    <script src="main.js"></script>
+</body>
 
-            window.onbeforeunload = closingCode;
-            function closingCode(){
-                console.log('closing window');
-                // hacer peticion fetch hacia el back para ejecutar el borrado de los datos del respectivo contacto
-                return null;
-            }
-
-        </script>-->
-        <script src="main.js"></script>
-    </body>
 </html>

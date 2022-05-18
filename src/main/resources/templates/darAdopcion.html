@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,9 @@
     <link rel="stylesheet" href="../assets/css/styleRegistro.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
 </head>
-<body>
+
+<body class="usuario">
+
     <form th:action="@{/contacto/cargar}" method="POST" id="form">
         <div class="form">
             <h1>Datos usuario</h1>
@@ -26,6 +29,8 @@
             <button type="submit">Continuar</button>
         </div>
     </form>
+
     <script src="main.js"></script>
 </body>
+
 </html>

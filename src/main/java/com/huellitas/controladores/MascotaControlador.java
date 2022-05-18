@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.huellitas.controladores;
 
-import com.huellitas.entidades.ContactoMascota;
 import com.huellitas.entidades.Mascota;
-import com.huellitas.servicios.ContactoMascotaServicio;
 import com.huellitas.servicios.MascotaServicio;
 import com.huellitas.servicios.ZonaServicio;
 import java.util.List;
@@ -19,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/mascota")
@@ -29,9 +24,6 @@ public class MascotaControlador {
     
     @Autowired
     private ZonaServicio zonaServicio;
-
-    @Autowired
-    private ContactoMascotaServicio contactoMascotaServicio;
 
     @GetMapping("/cargar/{id}")
     public String mascota(@PathVariable String id, ModelMap modelo){
@@ -47,11 +39,11 @@ public class MascotaControlador {
     }
 
     @PostMapping("/cargar")
-    public String cargarMascota(ModelMap modelo, @RequestParam String sexo, @RequestParam String tipo,
+    public String cargarMascota(ModelMap modelo, MultipartFile archivo, @RequestParam String sexo, @RequestParam String tipo,
             @RequestParam Integer edad, @RequestParam String raza, @RequestParam String observaciones,
             @RequestParam String idZona, @RequestParam String idContacto) throws Exception {
         try {
-            mascotaServicio.crear(sexo, tipo, edad, raza, observaciones, idZona, idContacto);
+            mascotaServicio.crear(archivo, sexo, tipo, edad, raza, observaciones, idZona, idContacto);
         } catch (Exception e) {
             modelo.put("error", e.getMessage());
         }

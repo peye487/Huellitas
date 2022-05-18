@@ -41,6 +41,20 @@ public class Mascota{
     
     @OneToOne
     private ContactoMascota contacto;
+    
+    @OneToOne
+    private Foto foto;
+
+    
+    
+    //Getters y Setters
+    public Foto getFoto() {
+        return foto;
+    }
+
+    public void setFoto(Foto foto) {
+        this.foto = foto;
+    }
 
     public ContactoMascota getContacto() {
         return contacto;
