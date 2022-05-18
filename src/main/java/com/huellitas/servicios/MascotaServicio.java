@@ -1,6 +1,7 @@
 package com.huellitas.servicios;
 
 import com.huellitas.entidades.ContactoMascota;
+import com.huellitas.entidades.Foto;
 import com.huellitas.entidades.Mascota;
 import com.huellitas.entidades.Zona;
 import com.huellitas.enums.EstadoMascota;
@@ -11,16 +12,21 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class MascotaServicio {
     @Autowired
     private MascotaRepositorio mascotaRepositorio;
+    
     @Autowired
     private ContactoMascotaServicio contactoMascotaServicio;
     
     @Autowired
     private ZonaServicio zonaServicio;
+    
+    @Autowired
+    private FotoServicio fotoServicio;
 
     public Mascota buscarPorId(String id) throws Exception {
         Optional<Mascota> respuesta = mascotaRepositorio.findById(id);
@@ -33,7 +39,7 @@ public class MascotaServicio {
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public Mascota crear(String sexo, String tipo, Integer edad, String raza, String observaciones, String idZona, String idContacto) throws Exception {
+    public Mascota crear(MultipartFile archivo, String sexo, String tipo, Integer edad, String raza, String observaciones, String idZona, String idContacto) throws Exception {
         validar(sexo, tipo, edad, raza, observaciones);
         Mascota mascota = new Mascota();
         mascota.setEdad(edad);
@@ -44,8 +50,13 @@ public class MascotaServicio {
         
         Zona zona = zonaServicio.buscarPorId(idZona);
         mascota.setZona(zona);
+        
         ContactoMascota contacto = contactoMascotaServicio.buscarPorId(idContacto);
         mascota.setContacto(contacto);
+        
+        Foto foto = fotoServicio.guardar(archivo);
+        mascota.setFoto(foto);
+        
         mascota.setEstadoMascota(EstadoMascota.DISPONIBLE);
 
         //String passEncriptado = new BC
