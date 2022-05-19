@@ -74,7 +74,7 @@ public class ZonaServicio {
     @Transactional(readOnly = true)
     public List<Zona> listarTodo()throws Exception{
        
-        List<Zona> zonas = zonaRepositorio.findAll();
+        List<Zona> zonas = zonaRepositorio.listarprovincia();
         if(zonas.isEmpty()){
             throw new Exception("No existen zonas en la base de datos");
         }
