@@ -54,6 +54,8 @@ public class MascotaServicio {
         ContactoMascota contacto = contactoMascotaServicio.buscarPorId(idContacto);
         mascota.setContacto(contacto);
         
+        mascota.setFechaAlta(new Date());
+        
         Foto foto = fotoServicio.guardar(archivo);
         mascota.setFoto(foto);
         
