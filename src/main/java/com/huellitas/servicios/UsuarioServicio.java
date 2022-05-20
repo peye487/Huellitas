@@ -3,15 +3,23 @@ package com.huellitas.servicios;
 
 import com.huellitas.entidades.Usuario;
 import com.huellitas.repositorios.UsuarioRepositorio;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 @Service
 public class UsuarioServicio implements UserDetailsService
@@ -102,8 +110,26 @@ public class UsuarioServicio implements UserDetailsService
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Usuario u = usuarioRepositorio.buscarPorEmail(email);
+        
+        if (u == null) {
+            return null;
+            
+        }
+        List<GrantedAuthority>permisos = new ArrayList<>();
+        
+       // GrantedAuthority p1 =  new SimpleGrantedAuthority("ROLE_" + u.getRol().toString());
+       // permisos.add(p1);
+        
+        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+        
+        HttpSession session = attr.getRequest().getSession(true);
+        session.setAttribute("usuariosession", u);
+        
+        return new User(u.getEmail(), u.getPass(), permisos);
+
+        
     }
  
 }
