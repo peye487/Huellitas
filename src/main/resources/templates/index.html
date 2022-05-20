@@ -37,7 +37,18 @@
 </head>
 
 <body>
-
+ <!--  <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <img src="..." class="rounded me-2" alt="...">
+      <strong class="me-auto" th:text="${session.usuariosession.email}">Sesion</strong>
+      <small>11 mins ago</small>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+      Inicio de sesion exitosa!!
+    </div>
+  </div Aviso de login REVER!!!!!!! Traer info de login> --> 
+  
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top d-flex align-items-center header-transparent">
     <div class="container d-flex justify-content-between align-items-center">
@@ -78,7 +89,7 @@
       </nav><!-- .navbar -->
     </div>
   </header><!-- End Header -->
-
+<h3  th:text="${session.usuariosession.email}"></h3>
   <!-- ======= Hero Section ======= -->
   <section id="hero">
     <div class="hero-container" data-aos="zoom-in" data-aos-delay="100">
