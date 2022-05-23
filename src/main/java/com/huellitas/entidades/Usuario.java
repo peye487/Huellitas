@@ -27,6 +27,7 @@ public class Usuario {
     private Date fechaBaja;
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaModificacion;
+    
 
     public String getId() {
         return id;
@@ -103,7 +104,7 @@ public class Usuario {
     @Override
     public String toString() {
         return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", edad=" + edad + ", email=" + email + ", pass=" + pass + ", fechaAlta=" + fechaAlta + ", fechaBaja=" + fechaBaja + ", fechaModificacion=" + fechaModificacion + '}';
-    }
+    }  
     
     
     

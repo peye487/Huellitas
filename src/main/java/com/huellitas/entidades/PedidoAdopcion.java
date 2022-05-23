@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
@@ -18,8 +19,14 @@ public class PedidoAdopcion {
     private String observacion;
     
     @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaPedido;
+    private Date fechaAdopcion;
+    
+    @OneToOne
+    private Usuario usuario;
+    @OneToOne
+    private Mascota mascota;
 
+  /*getter and setter */  
     public String getId() {
         return id;
     }
@@ -36,13 +43,30 @@ public class PedidoAdopcion {
         this.observacion = observacion;
     }
 
-    public Date getFechaPedido() {
-        return fechaPedido;
+    public Date getFechaAdopcion() {
+        return fechaAdopcion;
     }
 
-    public void setFechaPedido(Date fechaPedido) {
-        this.fechaPedido = fechaPedido;
+    public void setFechaAdopcion(Date fechaAdopcion) {
+        this.fechaAdopcion = fechaAdopcion;
     }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Mascota getMascota() {
+        return mascota;
+    }
+
+    public void setMascota(Mascota mascota) {
+        this.mascota = mascota;
+    }
+
     
     
 }
