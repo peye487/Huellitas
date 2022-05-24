@@ -47,7 +47,7 @@ public class MascotaControlador {
         } catch (Exception e) {
             modelo.put("error", e.getMessage());
         }
-        return "index.html";
+        return "redirect:/";
     }
 
     @GetMapping("/editar")
