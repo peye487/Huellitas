@@ -27,8 +27,10 @@ public class PedidoAdopcionServicio {
         PedidoAdopcion  pedAdopcion = new PedidoAdopcion();
         pedAdopcion.setFechaAdopcion(new Date());
         pedAdopcion.setObservacion(observacion);
+        
         Usuario usuario = usuarioServicio.buscarPorId(idUsuario);
         Mascota mascota = mascotaServicio.buscarPorId(idMascota);
+        
         pedAdopcion.setMascota(mascota);
         pedAdopcion.setUsuario(usuario);
 
