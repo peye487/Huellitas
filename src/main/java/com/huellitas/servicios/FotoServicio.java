@@ -25,4 +25,8 @@ public class FotoServicio {
             return null;
         }
     }
+    
+    public Foto buscarPorId(String id) {
+        return fotoRepositorio.getById(id);
+    }
 }

@@ -149,102 +149,14 @@
 
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <img src="assets/imgAdopcion/EnAdopcion/gato1.jpg" class="img-fluid" alt="">
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web" th:each = "m: ${mascotas}">
+            <img th:src="${'/foto/'+ m.foto.id}" class="w-100" style="height: 350px" alt="">
             <div class="portfolio-info">
-              <h4>Gato en adopción</h4>
-              <p>2 años</p>
-              <a href="" class="details-link" title="More Details"><i class="">Adoptame</i></a>
+              <h4 th:text="${m.tipo}"></h4>
+              <p th:text="${m.edad}"></p>
+              <a th:href="@{/pedido-adopcion/(id=__${m.id}__)}" class="details-link" title="More Details"><i class="" >Adoptame</i></a>
             </div>
           </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <img src="assets/imgAdopcion/EnAdopcion/conejo.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Conejo en adopcion.</h4>
-              <p>10 meses</p>
-
-              <a href="Iniciar.html" class="details-link" title="More Details"><i class="">Adoptame</i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <img src="assets/imgAdopcion/EnAdopcion/perro1.JPG" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Perro en adopción</h4>
-              <p> 4 meses </p>
-
-              <a href="Iniciar.html" class="details-link" title="More Details"><i class="">Adoptame</i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <img src="assets/imgAdopcion/EnAdopcion/gato2.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Gato en adopción.</h4>
-              <p>5 años</p>
-              <a href="assets/imgAdopcion/EnAdopcion/gato2.jpg" data-gallery="portfolioGallery"
-                class="portfolio-lightbox preview-link" title="Más información."><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <img src="assets/imgAdopcion/EnAdopcion/caballo.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Caballo en adopción</h4>
-              <p></p>
-              <a href="assets/imgAdopcion/EnAdopcion/caballo.jpg" data-gallery="portfolioGallery"
-                class="portfolio-lightbox preview-link" title="Más información."><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <img src="assets/imgAdopcion/EnAdopcion/gato3.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Gato en adopción.</h4>
-              <p>2 meses</p>
-              <a href="assets/imgAdopcion/EnAdopcion/gato2.jpg" data-gallery="portfolioGallery"
-                class="portfolio-lightbox preview-link" title="Más información."><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <img src="assets/imgAdopcion/EnAdopcion/perro3.JPG" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Perro rescatado, en adopción</h4>
-              <p>3 meses</p>
-              <a href="assets/imgAdopcion/EnAdopcion/perro3.jpg" data-gallery="portfolioGallery"
-                class="portfolio-lightbox preview-link" title="Más información."><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <img src="assets/imgAdopcion/EnAdopcion/perro2.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Perro en adopción</h4>
-              <p>1 año</p>
-              <a href="assets/imgAdopcion/EnAdopcion/perro2.jpg" data-gallery="portfolioGallery"
-                class="portfolio-lightbox preview-link" title=""><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <img src="assets/imgAdopcion/EnAdopcion/loro.jpg" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Loro extraviado, en adopción.</h4>
-              <p>6 años</p>
-              <a href="assets/imgAdopcion/EnAdopcion/loro.jpg" data-gallery="portfolioGallery"
-                class="portfolio-lightbox preview-link" title=""><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-
         </div>
 
       </div>
