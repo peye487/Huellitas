@@ -134,9 +134,9 @@ public class MascotaServicio {
             throw new Exception("La raza no puede ser nula");
         }
 
-        if (observaciones == null || observaciones.isEmpty()) {
-            throw new Exception("Las observaciones no pueden ser nulas");
-        }
+//        if (observaciones == null || observaciones.isEmpty()) {
+//            throw new Exception("Las observaciones no pueden ser nulas");
+//        }
 
         if (edad == null || edad <= 0) {
             throw new Exception("La edad no puede ser nula o menor a cero");
