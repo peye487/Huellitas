@@ -47,10 +47,12 @@
         <ul>
           <li><a class="nav-link scrollto active" href="#hero">Inicio</a></li>
           <li><a class="nav-link scrollto" href="#about">Nosotros</a></li>
-          <!-- <li><a class="nav-link scrollto" href="#services">Servicios</a></li> -->
           <li><a class="nav-link scrollto " href="#portfolio">Adopción</a></li>
           <li><a class="nav-link scrollto" href="#team">Equipo</a></li>
           <li><a class="nav-link scrollto" target=_blank href="/contacto/cargar">Dar en adopción</a></li>
+          <li><a th:if="${session.usuariosession == null}" class="nav-link scrollto" href="/login">Iniciar sesión</a></li>
+          <li><a th:if="${session.usuariosession != null}" class="nav-link scrollto" href="/logout">Cerrar sesión</a></li>
+
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -84,24 +86,29 @@
             </p>
 
             <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
-              <div class="icon"><i class="bi bi-briefcase"></i></div>
-              <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
-              <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum
-                soluta nobis est eligendi</p>
+              <div class="icon"><i class="bi bi-emoji-sunglasses"></i></div>
+              <h4 class="title"><a href="">Comunicación</a></h4>
+              <p class="description">La comunicación no verbal es uno de los valores que puedes aprender de los
+                animales, pues a través de gestos, expresiones o el lenguaje corporal puedes transmitir tus ideas o
+                pensamientos, al igual que tu mascota lo hace contigo. Asimismo, se ha demostrado con estudios
+                científicos que las mascotas mejoran la comunicación entre padres e hijos.</p>
             </div>
 
             <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
-              <div class="icon"><i class="bi bi-card-checklist"></i></div>
-              <h4 class="title"><a href="">Magni Dolores</a></h4>
-              <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                mollit anim id est laborum</p>
+              <div class="icon"><i class="bi bi-flower1"></i></div>
+              <h4 class="title"><a href="">Lealtad</a></h4>
+              <p class="description">Las mascotas tienen muy claro quienes conforman su familia desde que llegan a tu
+                hogar. En este momento, empieza a forjarse su lealtad con todos los integrantes del núcleo familiar. Un
+                ejemplo muy claro de ello serían los perros: estos animales siempre estarán pendientes del bienestar de
+                sus tutores.</p>
             </div>
 
             <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
-              <div class="icon"><i class="bi bi-binoculars"></i></div>
-              <h4 class="title"><a href="">Dolor Sitema</a></h4>
-              <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                commodo consequat tarad limino ata</p>
+              <div class="icon"><i class="bi bi-brightness-high"></i></div>
+              <h4 class="title"><a href="">Respeto</a></h4>
+              <p class="description">Como cualquier otro ser vivo, los animales merecen respeto y también te enseñan a
+                potenciar este valor. Sin importar tu edad o la de los miembros de tu familia, es importante respetar el
+                espacio, hábitat y seguridad de tu mascota.</p>
             </div>
 
           </div>
@@ -121,7 +128,7 @@
             <p class="cta-text"> No estamos diciendo que será facil, pero te aseguramos que valdra la pena.</p>
           </div>
           <div class="col-lg-3 cta-btn-container text-center">
-            <a class="cta-btn align-middle" target=_blank href="portfolio-details.html">Solicitud de adopcion</a>
+            <a class="cta-btn align-middle" target=_blank href="/contacto/cargar">Solicitud de adopcion</a>
           </div>
         </div>
 
@@ -139,10 +146,9 @@
         <div class="row" data-aos="fade-up" data-aos-delay="100">
           <div class="col-lg-12 d-flex justify-content-center">
             <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">Todos</li>
-              <li data-filter=".filter-app ">Gatos</li>
-              <li data-filter=".filter-card">Perros</li>
-              <li data-filter=".filter-web">Otros</li>
+              <a href="/">Todos</a>
+              <a href="?tipo=GATO">Gatos</a>
+              <a href="?tipo=PERRO">Perros</a>
             </ul>
           </div>
         </div>
@@ -153,7 +159,7 @@
             <img th:src="${'/foto/'+ m.foto.id}" class="w-100" style="height: 350px" alt="">
             <div class="portfolio-info">
               <h4 th:text="${m.tipo}"></h4>
-              <p th:text="${m.edad}"></p>
+              <p th:text="${m.edad}+' años'"></p>
               <a th:href="@{/pedido-adopcion/(idMascota=__${m.id}__)}" class="details-link" title="More Details"><i class="" >Adoptame</i></a>
             </div>
           </div>
@@ -167,88 +173,81 @@
       <div class="container" data-aos="fade-up">
         <div class="section-header">
           <h3 class="section-title">Nuestro equipo</h3>
-          <p class="section-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-            doloremque</p>
+          <p class="section-description">Alumnos de EGG en curso de FULL STACK. Proyecto final.</p>
         </div>
         <div class="row">
           <div class="col-lg-3 col-md-6">
             <div class="member" data-aos="fade-up" data-aos-delay="100">
-              <div class="pic"><img src="assets/img/team-1.jpg" alt=""></div>
-              <h4>Walter White</h4>
-              <span>Chief Executive Officer</span>
+              <div class="pic"><img src="assets/imgEquipo/wan.jpg" alt=""></div>
+              <h4>Wanda Montangero</h4>
+              <span>Full stack developer</span>
               <div class="social">
-                <a href=""><i class="bi bi-twitter"></i></a>
-                <a href=""><i class="bi bi-facebook"></i></a>
-                <a href=""><i class="bi bi-instagram"></i></a>
-                <a href=""><i class="bi bi-linkedin"></i></a>
+                <a href=""><i class="bi bi-github"></i>
+                  <a href="https://www.instagram.com/wandamontangero/"><i class="bi bi-instagram"></i></a>
+                  <a href="https://www.linkedin.com/in/wanda-montangero-ba6025220/"><i class="bi bi-linkedin"></i></a>
               </div>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-6">
             <div class="member" data-aos="fade-up" data-aos-delay="200">
-              <div class="pic"><img src="assets/img/team-2.jpg" alt=""></div>
-              <h4>Sarah Jhinson</h4>
-              <span>Product Manager</span>
+              <div class="pic"><img src="assets/imgEquipo/cris.jpg" alt=""></div>
+              <h4>Cristian Suarez</h4>
+              <span>Full stack developer</span>
               <div class="social">
-                <a href=""><i class="bi bi-twitter"></i></a>
-                <a href=""><i class="bi bi-facebook"></i></a>
-                <a href=""><i class="bi bi-instagram"></i></a>
-                <a href=""><i class="bi bi-linkedin"></i></a>
+                <a href=""><i class="bi bi-github"></i>
+                  <a href="https://www.instagram.com/cristian_suarez0898/"><i class="bi bi-instagram"></i></a>
+                  <a href="https://www.linkedin.com/in/cristian-suarez-907757238/"><i class="bi bi-linkedin"></i></a>
               </div>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-6">
             <div class="member" data-aos="fade-up" data-aos-delay="300">
-              <div class="pic"><img src="assets/img/team-3.jpg" alt=""></div>
-              <h4>William Anderson</h4>
-              <span>CTO</span>
+              <div class="pic"><img src="assets/imgEquipo/juampi.jpg" alt=""></div>
+              <h4>Juan Pablo Ferreyra</h4>
+              <span>Full stack developer</span>
               <div class="social">
-                <a href=""><i class="bi bi-twitter"></i></a>
-                <a href=""><i class="bi bi-facebook"></i></a>
-                <a href=""><i class="bi bi-instagram"></i></a>
-                <a href=""><i class="bi bi-linkedin"></i></a>
+                <a href=""><i class="bi bi-github"></i>
+                  <a href="https://www.instagram.com/ferreyra3251"><i class="bi bi-instagram"></i></a>
+                  <a href="https://www.linkedin.com/mwlite/in/juan-pablo-ferreyra-47594958"><i class="bi bi-linkedin"></i></a>
               </div>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-6">
             <div class="member" data-aos="fade-up" data-aos-delay="400">
-              <div class="pic"><img src="assets/img/team-4.jpg" alt=""></div>
-              <h4>Amanda Jepson</h4>
-              <span>Accountant</span>
+              <div class="pic"><img src="assets/imgEquipo/mati.jpg" alt=""></div>
+              <h4>Matias Arias Caballero</h4>
+              <span>Full stack developer</span>
               <div class="social">
-                <a href=""><i class="bi bi-twitter"></i></a>
-                <a href=""><i class="bi bi-facebook"></i></a>
-                <a href=""><i class="bi bi-instagram"></i></a>
-                <a href=""><i class="bi bi-linkedin"></i></a>
+                <a href=""><i class="bi bi-github"></i>
+                  <a href="https://www.instagram.com/MatiCaballero5"><i class="bi bi-instagram"></i></a>
+                  <a href="https://www.linkedin.com/in/matiasariascaballero/"><i class="bi bi-linkedin"></i></a>
               </div>
             </div>
           </div>
           <div class="col-lg-3 col-md-6">
             <div class="member" data-aos="fade-up" data-aos-delay="400">
-              <div class="pic"><img src="assets/img/team-4.jpg" alt=""></div>
-              <h4>Amanda Jepson</h4>
-              <span>Accountant</span>
+              <div class="pic"><img src="assets/imgEquipo/david.jpg" alt=""></div>
+              <h4>David Magrini</h4>
+              <span>Full stack developer</span>
               <div class="social">
-                <a href=""><i class="bi bi-twitter"></i></a>
-                <a href=""><i class="bi bi-facebook"></i></a>
-                <a href=""><i class="bi bi-instagram"></i></a>
-                <a href=""><i class="bi bi-linkedin"></i></a>
+                <a href=""><i class="bi bi-github"></i>
+                  <a href="https://www.instagram.com/Magrinidavid"><i class="bi bi-instagram"></i></a>
+                  <a href="https://www.linkedin.com/in/david-omar-magrini-a7370317b"><i class="bi bi-linkedin"></i></a>
               </div>
             </div>
           </div>
           <div class="col-lg-3 col-md-6">
             <div class="member" data-aos="fade-up" data-aos-delay="400">
-              <div class="pic"><img src="assets/img/team-4.jpg" alt=""></div>
-              <h4>Amanda Jepson</h4>
-              <span>Accountant</span>
+              <div class="pic"><img src="assets/imgEquipo/majo.jpg" alt=""></div>
+              <h4>Maria Jose Boero</h4>
+              <span>Full stack developer</span>
               <div class="social">
-                <a href=""><i class="bi bi-twitter"></i></a>
-                <a href=""><i class="bi bi-facebook"></i></a>
-                <a href=""><i class="bi bi-instagram"></i></a>
-                <a href=""><i class="bi bi-linkedin"></i></a>
+                <a href="https://www.linkedin.com/in/mar%C3%ADa-jos%C3%A9-boero-7071a1134/"><i class="bi bi-github"></i>
+                  <a href="https://www.instagram.com/mariajoseboero"><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
               </div>
             </div>
           </div>

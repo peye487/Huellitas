@@ -26,13 +26,15 @@ public class UsuarioControlador {
 
     @PostMapping("/registro")
     public String crearUsuario(ModelMap modelo, @RequestParam String nombre, @RequestParam String apellido,
-            @RequestParam Integer edad, @RequestParam String email, @RequestParam String password) throws Exception {
+            @RequestParam Integer edad, @RequestParam String email, @RequestParam String password, @RequestParam String passConfirm) throws Exception {
         try {
             System.out.println(nombre+apellido+edad+email+password);
                  
-            usuarioServicio.crear(nombre, apellido, edad, email, password);
+            usuarioServicio.crear(nombre, apellido, edad, email, password, passConfirm);
         } catch (Exception e) {
             modelo.put("error", e.getMessage());
+            
+            return "redirect:/usuario/registro";
         }
         return "redirect:/";
     }
