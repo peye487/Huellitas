@@ -2,6 +2,7 @@
 package com.huellitas.servicios;
 
 import com.huellitas.entidades.Usuario;
+import com.huellitas.enums.TipoRol;
 import com.huellitas.repositorios.UsuarioRepositorio;
 import java.util.ArrayList;
 import java.util.Date;
@@ -51,6 +52,8 @@ public class UsuarioServicio implements UserDetailsService
         usuario.setEdad(edad);
         usuario.setEmail(email);
         usuario.setFechaAlta(new Date());
+        
+        usuario.setTipoRol(TipoRol.USER);
         
         if(pass.equals(passConfirm)){
             String passEncriptado = new BCryptPasswordEncoder().encode(pass);

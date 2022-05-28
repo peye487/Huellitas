@@ -46,6 +46,12 @@ public class MascotaControlador {
             mascotaServicio.crear(archivo, sexo, tipo, edad, raza, observaciones, idZona, idContacto);
         } catch (Exception e) {
             modelo.put("error", e.getMessage());
+            
+            modelo.put("edad", edad);
+            modelo.put("raza", raza);
+            modelo.put("oservaciones", observaciones);
+            
+            return "darAdopcionMascota.html";
         }
         return "redirect:/";
     }

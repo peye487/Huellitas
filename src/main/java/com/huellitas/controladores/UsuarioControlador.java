@@ -34,33 +34,40 @@ public class UsuarioControlador {
         } catch (Exception e) {
             modelo.put("error", e.getMessage());
             
-            return "redirect:/usuario/registro";
+            modelo.put("nombre", nombre);
+            modelo.put("apellido", apellido);
+            modelo.put("edad", edad);
+            modelo.put("email", email);
+            modelo.put("password", password);
+            modelo.put("passConfirm", passConfirm);
+            
+            return "registro.html";
         }
         return "redirect:/";
     }
 
-    @GetMapping("/{id}")
-    public String editarUsuario(@PathVariable String id, ModelMap model){
-        try { 
-            Usuario usuario = usuarioServicio.buscarPorId(id);
-            model.addAttribute("usuario", usuario);
-            
-        } catch (Exception e) {
-            model.put("error", e.getMessage());
-        }      
-        return "editarUsuario.html"; /*ver nombre del html*/
-    }
-
-    @PostMapping("/{id}")
-    public String editarUsuario(@PathVariable String id, @RequestParam String nombre, 
-            @RequestParam String apellido,@RequestParam Integer edad, @RequestParam String email, 
-            @RequestParam String password, ModelMap modelo) throws Exception {
-        try {
-            usuarioServicio.modificarUsuario(id, nombre, apellido, edad, email);
-            
-        } catch (Exception e) {
-            modelo.put("error", e.getMessage());
-        }
-        return "index.html";
-    }
+//    @GetMapping("/{id}")
+//    public String editarUsuario(@PathVariable String id, ModelMap model){
+//        try { 
+//            Usuario usuario = usuarioServicio.buscarPorId(id);
+//            model.addAttribute("usuario", usuario);
+//            
+//        } catch (Exception e) {
+//            model.put("error", e.getMessage());
+//        }      
+//        return "editarUsuario.html"; /*ver nombre del html*/
+//    }
+//
+//    @PostMapping("/{id}")
+//    public String editarUsuario(@PathVariable String id, @RequestParam String nombre, 
+//            @RequestParam String apellido,@RequestParam Integer edad, @RequestParam String email, 
+//            @RequestParam String password, ModelMap modelo) throws Exception {
+//        try {
+//            usuarioServicio.modificarUsuario(id, nombre, apellido, edad, email);
+//            
+//        } catch (Exception e) {
+//            modelo.put("error", e.getMessage());
+//        }
+//        return "index.html";
+//    }
 }

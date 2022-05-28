@@ -33,6 +33,11 @@ public class ContactoMascotaControlador {
             contacto = contactoMascotaServicio.crearContacto(nombre, email, telefono);
         } catch (Exception e) {
             modelo.put("error", e.getMessage());
+            
+            modelo.put("nombre", nombre);
+            modelo.put("email", email);
+            modelo.put("telefono", telefono);
+            
             return "darAdopcion.html";
         }
         return "redirect:/mascota/cargar/" + contacto.getId();

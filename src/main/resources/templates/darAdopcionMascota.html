@@ -13,6 +13,10 @@
     <div class="container-login">
         <form th:action="@{/mascota/cargar}" method="POST" id="form1" enctype="multipart/form-data">
             <h1>Datos de la Mascota</h1>
+
+            <br>
+            <p th:if="${error != null}" th:text="${error}" style="color: red" ></p>
+
             <div class="container">
                 <div class="form1">
 
@@ -27,12 +31,12 @@
                     </div>
                     <div class="grupo">
                         <h3 class="stiloh3">Edad</h3>
-                        <input type="number" name="edad" id="email" required min="1" max="20"><span
+                        <input type="number" name="edad" id="email" th:value="${edad}" required min="1" max="20"><span
                             class="barra"></span>
                         <label for="edad"></label>
                     </div>
                     <div class="grupo">
-                        <input type="text" name="raza" id="name" required><span class="barra"></span>
+                        <input type="text" name="raza" id="name" th:value="${raza}" required><span class="barra"></span>
                         <label for="">Raza</label>
                     </div>
                     <div class="grupo">
@@ -79,7 +83,7 @@
                     <div class="grupo">
                         <label for=""></label>
                         <textarea name="observaciones" id="" cols="80" rows="20"
-                            placeholder="ingresar observacion"></textarea>
+                            placeholder="ingresar observacion" th:value="${observaciones}"></textarea>
                     </div>
                 </div>
             </div>

@@ -45,6 +45,10 @@
 
       <nav id="navbar" class="navbar">
         <ul>
+          <li><a th:if="${session.usuariosession != null}" sec:authorize="hasAnyRole('ROLE_ADMIN')"  class="nav-link scrollto" href="/login">Historial adopciones</a></li>
+          <li><a th:if="${session.usuariosession != null}" sec:authorize="hasAnyRole('ROLE_ADMIN')"  class="nav-link scrollto" href="/login">Editar Usuarios</a></li>
+          <li><a th:if="${session.usuariosession != null}" sec:authorize="hasAnyRole('ROLE_ADMIN')"  class="nav-link scrollto" href="/login">Editar zonas</a></li>
+
           <li><a class="nav-link scrollto active" href="#hero">Inicio</a></li>
           <li><a class="nav-link scrollto" href="#about">Nosotros</a></li>
           <li><a class="nav-link scrollto " href="#portfolio">Adopción</a></li>
