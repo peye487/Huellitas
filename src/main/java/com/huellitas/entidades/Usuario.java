@@ -1,8 +1,11 @@
 
 package com.huellitas.entidades;
 
+import com.huellitas.enums.TipoRol;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
@@ -28,6 +31,18 @@ public class Usuario {
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaModificacion;
     
+    @Enumerated(EnumType.STRING)
+    private TipoRol tipoRol;
+
+    
+    
+    public TipoRol getTipoRol() {
+        return tipoRol;
+    }
+
+    public void setTipoRol(TipoRol tipoRol) {
+        this.tipoRol = tipoRol;
+    }
 
     public String getId() {
         return id;
