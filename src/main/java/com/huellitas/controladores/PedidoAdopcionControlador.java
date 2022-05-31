@@ -50,4 +50,18 @@ public class PedidoAdopcionControlador {
        }
         return "redirect:/";
    }
+   
+   @GetMapping("/lista")
+    public String lista(ModelMap modelo){
+    
+         try {
+            modelo.addAttribute("pedidos", pAdopcionServicio.buscartodo());            
+         } catch (Exception e) {
+            modelo.put("error", e.getMessage()); 
+         }
+        
+        return "listaAdopciones.html";    
+    }
+
 }
+

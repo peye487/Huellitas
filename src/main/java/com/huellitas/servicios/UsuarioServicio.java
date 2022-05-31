@@ -11,6 +11,7 @@ import java.util.Optional;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -38,6 +39,17 @@ public class UsuarioServicio implements UserDetailsService
              throw new Exception("No se encontro el usuario solicitado");
          }
      }
+    
+    public List<Usuario> listarUsuarios() throws Exception{
+        List<Usuario> respuesta = usuarioRepositorio.findAll();
+
+        if (respuesta.isEmpty()) {
+            throw new Exception("No existen usuarios cargados en la Base de datos");
+
+        } else {
+            return respuesta;
+        }
+    }
     
     @Transactional(rollbackFor = Exception.class)
     public Usuario crear(String nombre, String apellido, Integer edad, 
@@ -77,7 +89,7 @@ public class UsuarioServicio implements UserDetailsService
     
     @Transactional(rollbackFor = Exception.class)
     public void modificarUsuario(String id, String nombre, String apellido,
-            Integer edad,String email) throws Exception {
+            Integer edad, String email) throws Exception {
         validar (nombre, apellido, edad, email);
 
         Usuario usuario = buscarPorId(id);
@@ -132,8 +144,8 @@ public class UsuarioServicio implements UserDetailsService
         }
         List<GrantedAuthority>permisos = new ArrayList<>();
         
-       // GrantedAuthority p1 =  new SimpleGrantedAuthority("ROLE_" + u.getRol().toString());
-       // permisos.add(p1);
+        GrantedAuthority p1 =  new SimpleGrantedAuthority("ROLE_" + u.getTipoRol().toString());
+        permisos.add(p1);
         
         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
         

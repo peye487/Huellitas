@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar Usuarios</title>
+    <link rel="stylesheet" href="../../assets/css/styleRegistro.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <table class="table" style="background-color: antiquewhite; margin-top: 25px; margin-left: 100px; width: 80%;">
+        <thead>
+          <tr>            
+            <th scope="col" style="width: 8cm;">Nombre</th>
+            <th scope="col" style="width: 8cm;">Apellido</th>
+            <th scope="col" style="width: 8cm;">Email</th>
+            <th scope="col" style="width: 8cm;">Edad</th>
+            <th scope="col">Editar Usuario</th>
+            <th scope="col">Eliminar Usuario</th>            
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr th:each="u:${usuarios}">  
+
+            <td th:text="${u.nombre}"></td>  
+
+            <td th:text="${u.apellido}"></td> 
+
+            <td th:text="${u.email}"></td> 
+
+            <td th:text="${u.edad}"></td> 
+            
+            <td><a th:href="@{/usuario/editar_usuario(id=__${u.id}__)}" class="btn btn-primary" type="submit" style="margin-left: 7px;">Editar</a></td>
+              
+            <form th:action="@{/usuario/dar_baja}" method="POST">             
+              <td th:if="${u.fechaBaja==null}">
+                <button name="id" th:value="${u.id}" class="btn btn-danger" type="submit" style="background-color: red;" >Dar de Baja</button>
+              </td> 
+            </form>
+              <form th:action="@{/usuario/dar_alta}" method="POST">
+
+                <td th:if="${u.fechaBaja!=null}"><button name="id" th:value="${u.id}" class="btn btn-success" type="submit" >Dar de Alta</button></td>        
+
+            </form>       
+          
+        </tr>                   
+      </tbody>
+    </table>
+
+
+</body>
+</html>
