@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Usuario</title>
+    <link rel="stylesheet" href="../assets/css/styleRegistro.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <body class="usuario">
+
+        <form th:action="@{/usuario/editar_usuario}" method="POST" id="form">
+            <div class="form">
+                <h1>Editar Usuario</h1>
+
+                <input type="hidden" name="id" th:value="${usuario.id}"/>
+
+                <div class="grupo">
+                    <input type="text" name="nombre" required><span class="barra"></span>
+                    <label for="">Nombre</label>
+                </div>
+                <div class="grupo">
+                    <input type="text" name="apellido" required><span class="barra"></span>
+                    <label for="">Apellido</label>
+                </div>
+                <div class="grupo">
+                    <input type="email" name="email" required><span class="barra"></span>
+                    <label for="">Email</label>
+                </div>
+                <div class="grupo">
+                    <input type="number" name="edad" required><span class="barra"></span>
+                    <label for="">Edad</label>
+                </div>
+
+                <button type="submit">Actualizar</button>
+            </div>
+        </form>
+
+        <script src="main.js"></script>
+    </body>
+
+</html>

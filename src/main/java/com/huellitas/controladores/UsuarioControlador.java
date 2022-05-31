@@ -3,6 +3,7 @@ package com.huellitas.controladores;
 
 import com.huellitas.entidades.Usuario;
 import com.huellitas.servicios.UsuarioServicio;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -46,28 +47,62 @@ public class UsuarioControlador {
         return "redirect:/";
     }
 
-//    @GetMapping("/{id}")
-//    public String editarUsuario(@PathVariable String id, ModelMap model){
-//        try { 
-//            Usuario usuario = usuarioServicio.buscarPorId(id);
-//            model.addAttribute("usuario", usuario);
-//            
-//        } catch (Exception e) {
-//            model.put("error", e.getMessage());
-//        }      
-//        return "editarUsuario.html"; /*ver nombre del html*/
-//    }
-//
-//    @PostMapping("/{id}")
-//    public String editarUsuario(@PathVariable String id, @RequestParam String nombre, 
-//            @RequestParam String apellido,@RequestParam Integer edad, @RequestParam String email, 
-//            @RequestParam String password, ModelMap modelo) throws Exception {
-//        try {
-//            usuarioServicio.modificarUsuario(id, nombre, apellido, edad, email);
-//            
-//        } catch (Exception e) {
-//            modelo.put("error", e.getMessage());
-//        }
-//        return "index.html";
-//    }
+    @GetMapping("/listar")
+    public String listarUsuario(ModelMap model){
+        try { 
+            List<Usuario> usuarios = usuarioServicio.listarUsuarios();
+            model.addAttribute("usuarios", usuarios);
+            
+        } catch (Exception e) {
+            model.put("error", e.getMessage());
+        }      
+        return "listaUsuario.html";
+    }
+    
+    @GetMapping("/editar_usuario")
+    public String editarUsuario(@RequestParam String id, ModelMap model){
+        try { 
+            Usuario usuario = usuarioServicio.buscarPorId(id);
+            model.addAttribute("usuario", usuario);
+            
+        } catch (Exception e) {
+            model.put("error", e.getMessage());
+        }      
+        return "editarUsuario.html";
+    }
+
+    @PostMapping("/editar_usuario")
+    public String editarUsuario(@RequestParam String id, @RequestParam String nombre, 
+            @RequestParam String apellido,@RequestParam Integer edad, @RequestParam String email, ModelMap modelo) throws Exception {
+        try {
+            
+            usuarioServicio.modificarUsuario(id, nombre, apellido, edad, email);
+            
+        } catch (Exception e) {
+            modelo.put("error", e.getMessage());
+        }
+        return "redirect:/";
+    }
+    
+    @PostMapping("/dar_baja")
+    public String bajaUsuario(String id, ModelMap modelo) throws Exception {
+        try {
+            usuarioServicio.eliminarUsuario(id);
+            
+        } catch (Exception e) {
+            modelo.put("error", e.getMessage());
+        }
+        return "redirect:/usuario/listar";
+    }
+    
+    @PostMapping("/dar_alta")
+    public String altaUsuario(String id, ModelMap modelo) throws Exception {
+        try {
+            usuarioServicio.habilitarUsuario(id);
+            
+        } catch (Exception e) {
+            modelo.put("error", e.getMessage());
+        }
+        return "redirect:/usuario/listar";
+    }
 }
