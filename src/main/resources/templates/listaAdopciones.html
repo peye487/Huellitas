@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar Adopciones</title>
+    <link rel="stylesheet" href="../../assets/css/styleRegistro.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <table class="table" style="background-color: antiquewhite; margin-top: 25px; margin-left: 100px; width: 50%;">
+        <thead>
+          <tr>            
+            <th scope="col" style="width: 8cm;">Fecha adopcion</th>
+            <th scope="col">Nombre usuario</th>
+            <th scope="col">Id mascota</th>            
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr th:each="p:${pedidos}">  
+
+            <td th:text="${p.fechaAdopcion}"></td> 
+            
+            <td th:text="${p.usuario.nombre}"></td>
+
+            <td th:text="${p.mascota.id}"></td>
+
+          </tr>                   
+      </tbody>
+    </table>
+
+
+    <script src="main.js"></script>
+</body>
+</html>

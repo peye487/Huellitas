@@ -6,6 +6,7 @@ import com.huellitas.entidades.PedidoAdopcion;
 import com.huellitas.entidades.Usuario;
 import com.huellitas.repositorios.PedidoAdopcionRepositorio;
 import java.util.Date;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,5 +39,17 @@ public class PedidoAdopcionServicio {
         return pedAdopRepositorio.save(pedAdopcion);
     }
     
+    @Transactional(readOnly = true)
+    public List<PedidoAdopcion> buscartodo() throws Exception {
+
+        List<PedidoAdopcion> respuesta = pedAdopRepositorio.findAll();
+
+        if (respuesta.isEmpty()) {
+            throw new Exception("No existen Pedidos de adopción concretados en la Base de datos");
+
+        } else {
+            return respuesta;
+        }
+    }   
     
 }
