@@ -2,6 +2,7 @@
 package com.huellitas.servicios;
 
 import com.huellitas.entidades.Usuario;
+import com.huellitas.enums.TipoRol;
 import com.huellitas.repositorios.UsuarioRepositorio;
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,7 +11,6 @@ import java.util.Optional;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -41,16 +41,27 @@ public class UsuarioServicio implements UserDetailsService
     
     @Transactional(rollbackFor = Exception.class)
     public Usuario crear(String nombre, String apellido, Integer edad, 
-            String email, String pass)throws Exception{
+            String email, String pass, String passConfirm)throws Exception{
+        
         validar(nombre, apellido, edad, email);
+        
         Usuario usuario = new Usuario();
+        
         usuario.setNombre(nombre);
         usuario.setApellido(apellido);
         usuario.setEdad(edad);
         usuario.setEmail(email);
         usuario.setFechaAlta(new Date());
-        String passEncriptado = new BCryptPasswordEncoder().encode(pass);
-        usuario.setPass(passEncriptado);
+        
+        usuario.setTipoRol(TipoRol.USER);
+        
+        if(pass.equals(passConfirm)){
+            String passEncriptado = new BCryptPasswordEncoder().encode(pass);
+            usuario.setPass(passEncriptado);
+            
+        } else{
+            throw new Exception("Las contraseñas no coinciden");
+        }       
         
         return usuarioRepositorio.save(usuario);
     }
@@ -67,7 +78,7 @@ public class UsuarioServicio implements UserDetailsService
     @Transactional(rollbackFor = Exception.class)
     public void modificarUsuario(String id, String nombre, String apellido,
             Integer edad,String email) throws Exception {
-        validar(nombre, apellido, edad, email);
+        validar (nombre, apellido, edad, email);
 
         Usuario usuario = buscarPorId(id);
 
@@ -107,6 +118,8 @@ public class UsuarioServicio implements UserDetailsService
         if(edad==null || edad<18){
             throw new Exception("La edad no puede ser nula y/o menor a 18 años");
         }  
+        
+        
     }
 
     @Override

@@ -2,17 +2,13 @@
 package com.huellitas.controladores;
 
 import com.huellitas.entidades.Mascota;
-import com.huellitas.entidades.Usuario;
 import com.huellitas.servicios.MascotaServicio;
 import com.huellitas.servicios.PedidoAdopcionServicio;
-import com.huellitas.servicios.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate5.SessionFactoryUtils;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,8 +23,6 @@ public class PedidoAdopcionControlador {
     @Autowired
     private MascotaServicio mascotaServicio;
     
-    @Autowired
-    private UsuarioServicio usuarioServicio;
   
     
     @GetMapping("/")

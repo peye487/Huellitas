@@ -14,16 +14,20 @@
     <form th:action="@{/contacto/cargar}" method="POST" id="form">
         <div class="form">
             <h1>Datos usuario</h1>
+
+            <br>
+                <p th:if="${error != null}" th:text="${error}" style="color: red" ></p>
+
             <div class="grupo">
-                <input type="text" name="nombre" required><span class="barra"></span>
+                <input type="text" name="nombre" th:value="${nombre}" required><span class="barra"></span>
                 <label for="">Nombre y apellido</label>
             </div>
             <div class="grupo">
-                <input type="email" name="email" required><span class="barra"></span>
+                <input type="email" name="email" th:value="${email}" required><span class="barra"></span>
                 <label for="">Email</label>
             </div>
             <div class="grupo">
-                <input type="text" name="telefono" required><span class="barra"></span>
+                <input type="text" name="telefono" th:value="${telefono}" required><span class="barra"></span>
                 <label for="">Telefono</label>
             </div>
             <button type="submit">Continuar</button>
