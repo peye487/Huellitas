@@ -23,15 +23,14 @@ public class PortalControlador {
          List<Mascota> mascotas;
          try{
              
-             if (tipo != null) {
-                 System.out.println("TIPO: " + tipo);
+            if (tipo != null) {
                  mascotas =new ArrayList();
-//                 mascotas = mascotaServicio.buscarPorTipo(tipo);
-             } else {
+                 mascotas = mascotaServicio.filtroMascotas(tipo);
+            } else {
                  mascotas =  mascotaServicio.listaMascotasDisponibles();
-             }
+            }
              
-             modelo.addAttribute("mascotas", mascotas);
+            modelo.addAttribute("mascotas", mascotas);
         } catch (Exception e){
             modelo.put("error", e.getMessage());
             return "index.html";

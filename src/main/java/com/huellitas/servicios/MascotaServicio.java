@@ -119,6 +119,12 @@ public class MascotaServicio {
         List<Mascota> mascotasDisponibles = mascotaRepositorio.listarMascotasDisponibles();
         return mascotasDisponibles;
     }
+    
+    @Transactional(readOnly = true)
+    public List<Mascota> filtroMascotas(String tipo){
+        List<Mascota> mascotas = mascotaRepositorio.filtroMascota(tipo);
+        return mascotas;
+    }
 
 
     private void validar(String sexo, String tipo, Integer edad, String raza, String observaciones) throws Exception {
