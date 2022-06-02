@@ -12,17 +12,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/zona")
 public class ZonaControlador {
-    @Autowired
-    private ZonaServicio zonaServicio;
-    
-    @PostMapping("/")
-    public String crearZona(ModelMap modelo, @RequestParam String ciudad, 
-            @RequestParam String provincia) throws Exception {
-        try {
-            zonaServicio.crear(ciudad, provincia);
-        } catch (Exception e) {
-            modelo.put("Error", e.getMessage());
-        }
-        return "index.html";
-    }
+//    @Autowired
+//    private ZonaServicio zonaServicio;
+//    
+//    @PostMapping("/")
+//    public String crearZona(ModelMap modelo, @RequestParam String ciudad, 
+//            @RequestParam String provincia) throws Exception {
+//        try {
+//            zonaServicio.crear(ciudad, provincia);
+//        } catch (Exception e) {
+//            modelo.put("Error", e.getMessage());
+//        }
+//        return "index.html";
+//    }
 }

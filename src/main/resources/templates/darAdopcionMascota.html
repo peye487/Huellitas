@@ -47,30 +47,10 @@
                             <option value="gato">Gato</option>
                             <option value="otro">Otro</option>
                         </select>
-                        <!-- <input type="text" name="tipo" id="name" required><span class="barra"></span> -->
                     </div>
                     <div class="grupo">
                         <h3 class="stiloh3">Seleccione provincia</h3>
-                        <select name="provincia" id="provincia" class="select">
-                            <option
-                                th:each = "z: ${zonas}"                        
-                                th:text = "${z.provincia}"
-                                th:value = "${z.provincia}">  
-                            </option>
-                        </select>
-                        <!-- <input type="text" name="provincia" id="name" required><span class="barra"></span> -->
-                        <label for=""></label>
-                    </div>
-                    <div class="grupo">
-                        <h3 class="stiloh3">Seleccione ciudad</h3>
-                        <select name="idZona" id="ciudad" class="select">
-                            <option
-                                th:each = "z: ${zonas}"                        
-                                th:text = "${z.ciudad}"
-                                th:value = "${z.id}">
-                            </option>
-                        </select>
-                        <!-- <input type="text" name="ciudad" id="name" required><span class="barra"></span> -->
+                        <select name="provincia" id="ciudad" class="select" data-provincias></select>
                         <label for=""></label>
                     </div>
                 </div>
@@ -94,6 +74,27 @@
         </form>
     </div>
     <script src="main.js"></script>
+
+   
+    <script>
+  
+      const select = document.querySelector('[data-provincias]')
+  
+      const addStateToSelect = name => {
+        const optionHTML = `<option value=${name}>${name}</option>`
+        const option  = document.createElement('option')
+        option.innerHTML = optionHTML
+        select.appendChild(option)
+      }
+  
+      fetch(
+        "https://apis.datos.gob.ar/georef/api/provincias",
+      )
+        .then((response) => response.json())
+        .then(data => data.provincias.forEach(({ nombre }) => addStateToSelect(nombre)))
+        .catch(console.error);
+    </script>
+
 </body>
 
 </html>

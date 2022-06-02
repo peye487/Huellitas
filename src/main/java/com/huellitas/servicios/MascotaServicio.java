@@ -23,9 +23,6 @@ public class MascotaServicio {
     private ContactoMascotaServicio contactoMascotaServicio;
     
     @Autowired
-    private ZonaServicio zonaServicio;
-    
-    @Autowired
     private FotoServicio fotoServicio;
 
     public Mascota buscarPorId(String id) throws Exception {
@@ -39,7 +36,7 @@ public class MascotaServicio {
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public Mascota crear(MultipartFile archivo, String sexo, String tipo, Integer edad, String raza, String observaciones, String idZona, String idContacto) throws Exception {
+    public Mascota crear(MultipartFile archivo, String sexo, String tipo, Integer edad, String raza, String observaciones, String provincia, String idContacto) throws Exception {
         validar(sexo, tipo, edad, raza);
         Mascota mascota = new Mascota();
         mascota.setEdad(edad);
@@ -47,9 +44,7 @@ public class MascotaServicio {
         mascota.setRaza(raza);
         mascota.setSexo(sexo);
         mascota.setTipo(tipo);
-        
-        Zona zona = zonaServicio.buscarPorId(idZona);
-        mascota.setZona(zona);
+        mascota.setZona(provincia);
         
         ContactoMascota contacto = contactoMascotaServicio.buscarPorId(idContacto);
         mascota.setContacto(contacto);

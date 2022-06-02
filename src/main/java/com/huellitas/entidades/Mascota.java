@@ -33,8 +33,7 @@ public class Mascota{
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaModificacion;
     
-    @ManyToOne
-    private Zona zona;
+    private String zona;
     
     @Enumerated(EnumType.STRING)
     private EstadoMascota estadoMascota;
@@ -64,11 +63,11 @@ public class Mascota{
         this.contacto = contacto;
     }
     
-    public Zona getZona() {
+    public String getZona() {
         return zona;
     }
 
-    public void setZona(Zona zona) {
+    public void setZona(String zona) {
         this.zona = zona;
     }
 
