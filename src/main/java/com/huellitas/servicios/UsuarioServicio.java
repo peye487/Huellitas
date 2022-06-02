@@ -138,9 +138,9 @@ public class UsuarioServicio implements UserDetailsService
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Usuario u = usuarioRepositorio.buscarPorEmail(email);
         
-        if (u == null) {
+//        || u.getFechaBaja() != null
+        if (u == null ) {
             return null;
-            
         }
         List<GrantedAuthority>permisos = new ArrayList<>();
         
