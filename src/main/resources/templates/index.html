@@ -40,8 +40,7 @@
     <div class="container d-flex justify-content-between align-items-center">
 
       <div id="logo">
-        <a href="index.html"><img src="assets/imgAdopcion/Recurso 2 50x50.png" alt=""></a>
-
+        <a href="/"><img src="assets/imgAdopcion/Recurso 2 50x50.png" alt=""></a>
       </div>
 
       <nav id="navbar" class="navbar">
@@ -59,7 +58,7 @@
           </li>
           <div th:if="${session.usuariosession != null}" class="dropdown">
             <button class="btn btn-secondary dropdown-toggle bg-transparent" type="button" id="dropdownMenuButton"
-              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" sec:authorize="hasAnyRole('ROLE_ADMIN')">
               Administrador
             </button>
            
@@ -99,7 +98,7 @@
             <h2 class="title">Algunas palabras sobre nosotros.</h2>
             <p>
               Huellitas es una entidad solidaria creada por alumnos del curso de EGG,
-              con el objetivo de ayudar a los perros y gatos sin hogar. <br>
+              con el objetivo de ayudar a los perros, gatos y diferentes animales domésticos sin hogar. <br>
               En huellitas creemos que los humanos, los sacamos de su hábitat original para incorporarlos a nuestras
               comunidades y ponerlos a nuestro servicio, pensando siempre en nuestras necesidades y muy poco en las de
               ellos. Por eso, es nuestra obligación como especie, respetarlos, protegerlos y asegurarles vidas dignas.
@@ -148,7 +147,7 @@
             <p class="cta-text"> Dale la posibilidad de conocer el amor fiel y leal a otra persona. </p>
           </div>
           <div class="col-lg-3 cta-btn-container text-center">
-            <a class="cta-btn align-middle" target=_blank href="/contacto/cargar">Solicitud de adopcion</a>
+            <a class="cta-btn align-middle" target=_blank href="/contacto/cargar">Dar en adopcion</a>
           </div>
         </div>
 

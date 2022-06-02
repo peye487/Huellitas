@@ -13,6 +13,7 @@
   <h1>Lista Usuario</h1>
   <table class="rwd-table">
     <tr>
+      <th scope="col">Fecha de adopcion</th>
       <th scope="col">Nombre usuario</th>
       <th scope="col">Id mascota</th>
     </tr>
@@ -21,7 +22,7 @@
 
       <td th:text="${p.fechaAdopcion}"></td>
 
-      <td th:text="${p.usuario.nombre}"></td>
+      <td th:text="${p.usuario.nombre}+${p.usuario.apellido}"></td>
 
       <td th:text="${p.mascota.id}"></td>
 
