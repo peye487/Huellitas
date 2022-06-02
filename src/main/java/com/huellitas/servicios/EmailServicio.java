@@ -20,7 +20,7 @@ public class EmailServicio {
         
         mailMessage.setFrom("huellitas.adopcion@yahoo.com");
         mailMessage.setTo(to);
-        mailMessage.setSubject("Contacto Adopción");
+        mailMessage.setSubject("Información contacto Adopción");
         mailMessage.setText(mensaje);
         
         javaMailSender.send(mailMessage);
