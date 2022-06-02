@@ -23,9 +23,6 @@ public class MascotaServicio {
     private ContactoMascotaServicio contactoMascotaServicio;
     
     @Autowired
-    private ZonaServicio zonaServicio;
-    
-    @Autowired
     private FotoServicio fotoServicio;
 
     public Mascota buscarPorId(String id) throws Exception {
@@ -39,17 +36,15 @@ public class MascotaServicio {
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public Mascota crear(MultipartFile archivo, String sexo, String tipo, Integer edad, String raza, String observaciones, String idZona, String idContacto) throws Exception {
-        validar(sexo, tipo, edad, raza, observaciones);
+    public Mascota crear(MultipartFile archivo, String sexo, String tipo, Integer edad, String raza, String observaciones, String provincia, String idContacto) throws Exception {
+        validar(sexo, tipo, edad, raza);
         Mascota mascota = new Mascota();
         mascota.setEdad(edad);
         mascota.setObservaciones(observaciones);
         mascota.setRaza(raza);
         mascota.setSexo(sexo);
         mascota.setTipo(tipo);
-        
-        Zona zona = zonaServicio.buscarPorId(idZona);
-        mascota.setZona(zona);
+        mascota.setZona(provincia);
         
         ContactoMascota contacto = contactoMascotaServicio.buscarPorId(idContacto);
         mascota.setContacto(contacto);
@@ -75,7 +70,7 @@ public class MascotaServicio {
 
     @Transactional(rollbackFor = Exception.class)
     public void modificarMascota(String id, String sexo, String tipo, Integer edad, String raza, String observaciones) throws Exception {
-        validar(sexo, tipo, edad, raza, observaciones);
+        validar(sexo, tipo, edad, raza);
 
         Mascota mascota = buscarPorId(id);/*se llama directamente el metodo buscar id para no volver a usar el optional etc*/
         
@@ -127,7 +122,7 @@ public class MascotaServicio {
     }
 
 
-    private void validar(String sexo, String tipo, Integer edad, String raza, String observaciones) throws Exception {
+    private void validar(String sexo, String tipo, Integer edad, String raza) throws Exception {
         if (sexo == null || sexo.isEmpty()) {
             throw new Exception("El sexo no puede ser nulo");
         }
@@ -139,10 +134,6 @@ public class MascotaServicio {
         if (raza == null || raza.isEmpty()) {
             throw new Exception("La raza no puede ser nula");
         }
-
-//        if (observaciones == null || observaciones.isEmpty()) {
-//            throw new Exception("Las observaciones no pueden ser nulas");
-//        }
 
         if (edad == null || edad <= 0) {
             throw new Exception("La edad no puede ser nula o menor a cero");

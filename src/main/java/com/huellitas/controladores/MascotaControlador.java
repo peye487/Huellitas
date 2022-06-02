@@ -29,7 +29,7 @@ public class MascotaControlador {
     public String mascota(@PathVariable String id, ModelMap modelo){
         try{
             modelo.put("idContacto", id);
-            modelo.addAttribute("zonas", zonaServicio.listarTodo());
+
         } catch (Exception e){
             modelo.put("error", e.getMessage());
             return "darAdopcionMascota.html";
@@ -41,9 +41,9 @@ public class MascotaControlador {
     @PostMapping("/cargar")
     public String cargarMascota(ModelMap modelo, MultipartFile archivo, @RequestParam String sexo, @RequestParam String tipo,
             @RequestParam Integer edad, @RequestParam String raza, @RequestParam String observaciones,
-            @RequestParam String idZona, @RequestParam String idContacto) throws Exception {
+            @RequestParam String provincia, @RequestParam String idContacto) throws Exception {
         try {
-            mascotaServicio.crear(archivo, sexo, tipo, edad, raza, observaciones, idZona, idContacto);
+            mascotaServicio.crear(archivo, sexo, tipo, edad, raza, observaciones, provincia, idContacto);
         } catch (Exception e) {
             modelo.put("error", e.getMessage());
             

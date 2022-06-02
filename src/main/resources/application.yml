@@ -1,6 +1,6 @@
 spring: 
   mail: 
-    host: smtp.gmail.com
+    host: smtp.mail.yahoo.com
     port: 587
     properties:
         mail:
@@ -9,8 +9,8 @@ spring:
                 starttls:
                     required: true
                     enable: true
-    username: 
-    password: 
+    username: huellitas.adopcion@yahoo.com
+    password: Huellitas123
   datasource: 
     url: jdbc:mysql://localhost:3306/huellitas?allowPublicKeyRetrieval=true&useSSL=false&useTimezone=true&serverTimezone=GMT&characterEncoding=UTF-8
     username: root
