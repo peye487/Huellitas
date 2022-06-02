@@ -38,4 +38,11 @@ public class PortalControlador {
          
          return "index.html";
      }
+     
+     @GetMapping("/mensaje")
+     public String Mensaje(){
+        
+      
+         return "saludo.html";
+     }
 }

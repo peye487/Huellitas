@@ -52,7 +52,7 @@ public class PedidoAdopcionControlador {
         } catch (Exception e) {
             modelo.put("error", e.getMessage());
        }
-        return "redirect:/";
+        return "redirect:/mensaje";
    }
    
    @GetMapping("/lista")
