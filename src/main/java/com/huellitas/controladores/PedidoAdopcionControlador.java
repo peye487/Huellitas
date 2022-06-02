@@ -31,8 +31,7 @@ public class PedidoAdopcionControlador {
     private UsuarioServicio usuarioServicio;
     
     @Autowired
-    private EmailServicio emailServicio;
-    
+    private EmailServicio emailServicio;    
      
     
     @GetMapping("/")
