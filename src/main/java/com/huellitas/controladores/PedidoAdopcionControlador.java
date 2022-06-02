@@ -4,7 +4,6 @@ package com.huellitas.controladores;
 
 import com.huellitas.entidades.Mascota;
 import com.huellitas.entidades.Usuario;
-import com.huellitas.servicios.EmailServicio;
 import com.huellitas.servicios.MascotaServicio;
 import com.huellitas.servicios.PedidoAdopcionServicio;
 import com.huellitas.servicios.UsuarioServicio;
@@ -28,41 +27,27 @@ public class PedidoAdopcionControlador {
     private MascotaServicio mascotaServicio;
     
     @Autowired
-    private UsuarioServicio usuarioServicio;
-    
-    @Autowired
-    private EmailServicio emailServicio;    
-     
-    
+    private UsuarioServicio usuarioServicio;    
+        
     @GetMapping("/")
     public String adoptarMascota(@RequestParam String idMascota, ModelMap modelo){
         
         try {
             Mascota mascota = mascotaServicio.buscarPorId(idMascota);
-            modelo.addAttribute("mascota", mascota);            
-            
+            modelo.addAttribute("mascota", mascota);           
             
         } catch (Exception e) {
-            
-        }
-        
+            modelo.put("error", e.getMessage());
+        }       
          return "adoptar.html";
     }
         
     @PostMapping("/")
-   public String crearPedido(ModelMap modelo, @RequestParam String observaciones, 
+   public String crearPedido(ModelMap modelo, @RequestParam (required = false) String observaciones, 
            @RequestParam String idUsuario, @RequestParam String idMascota) throws Exception {
         try {
+            
            pAdopcionServicio.crear(observaciones, idUsuario, idMascota);
-           
-           Usuario usuario = usuarioServicio.buscarPorId(idUsuario);
-           Mascota mascota = mascotaServicio.buscarPorId(idMascota);
-
-           String mensaje = "FELICITACIONES ACABAS DE ADOPTAR" + "\n\n Datos de contacto: " + "\n Nombre: "+ mascota.getContacto().getNombrePersona() +
-                            "\n Email: " + mascota.getContacto().getEmail() + "\n Telefono: " + mascota.getContacto().getTelefono();
-           
-           emailServicio.enviarMail(usuario.getEmail(), mensaje);
-           
            
         } catch (Exception e) {
             modelo.put("error", e.getMessage());

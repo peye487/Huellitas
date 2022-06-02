@@ -138,8 +138,7 @@ public class UsuarioServicio implements UserDetailsService
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Usuario u = usuarioRepositorio.buscarPorEmail(email);
         
-//        || u.getFechaBaja() != null
-        if (u == null ) {
+        if (u == null || u.getFechaBaja() != null) {
             return null;
         }
         List<GrantedAuthority>permisos = new ArrayList<>();

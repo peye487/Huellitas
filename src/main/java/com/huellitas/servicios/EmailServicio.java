@@ -18,7 +18,7 @@ public class EmailServicio {
     
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         
-        mailMessage.setFrom("ulyssapascal21@gmail.com");
+        mailMessage.setFrom("majo.boero@gmail.com");
         mailMessage.setTo(to);
         mailMessage.setSubject("Información contacto Adopción");
         mailMessage.setText(mensaje);
